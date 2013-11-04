@@ -25,7 +25,8 @@ paths = [
             Route(r'/home/<year>/<month>',handler = HomePage),
             Route('/logout', handler='auth_handlers.AuthHandler:logout', name='logout'),
             Route('/auth/<provider>', handler='auth_handlers.AuthHandler:_simple_auth', name='auth_login'),
-            Route('/auth/<provider>/callback', handler='auth_handlers.AuthHandler:_auth_callback', name='auth_callback')
+            Route('/auth/<provider>/callback', handler='auth_handlers.AuthHandler:_auth_callback', name='auth_callback'),
+            Route('/profile', handler='auth_handlers.ProfileHandler', name='profile'),
         ]
 
 application = webapp2.WSGIApplication(paths , config=app_config ,debug=True)

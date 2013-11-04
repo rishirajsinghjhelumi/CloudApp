@@ -76,9 +76,10 @@ class RootHandler(BaseRequestHandler):
     
 class ProfileHandler(BaseRequestHandler):
   def get(self):
-    """Handles GET /profile"""    
+    """Handles GET /profile"""
+    self.response.headers['Content-Type'] = 'application/json'
     if self.logged_in:
-      self.render('profile.html', {
+      self.response.write({
         'user': self.current_user, 
         'session': self.auth.get_user_by_session()
       })
