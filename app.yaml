@@ -35,3 +35,24 @@ libraries:
 - name: jinja2
   version: "2.6"
   
+- name: markupsafe
+  version: "0.15"
+  
+- name: setuptools
+  version: "0.6c11"
+  
+- name: lxml
+  version: '2.3'
+  
+skip_files:
+- ^(.*/)?#.*#
+- ^(.*/)?.*~
+- ^(.*/)?.*sh
+- ^(.*/)?.*\.py[co]
+- ^(.*/)?.*/RCS/.*
+- ^(.*/)?\..*
+- ^(.*/)?.*\.bak$
+- ^(.*/)?.*\.template$
+- tmp
+- tests
+

@@ -1,28 +1,31 @@
 import webapp2
+import sys
+from webapp2 import Route
+
+from secrets import SESSION_KEY
 
 from handlers import LandingPage
 from journey.handlers import HomePage
 
-
-from google.appengine.api import users
-
-class MyHandler(webapp2.RequestHandler):
-    def get(self):
-        user = users.get_current_user()
-        if user:
-            greeting = ('Welcome, %s! (<a href="%s">sign out</a>)' %
-                        (user.nickname(), users.create_logout_url('/')))
-        else:
-            greeting = ('<a href="%s">Sign in or register</a>.' %
-                        users.create_login_url('/'))
-
-        self.response.out.write('<html><body>%s</body></html>' % greeting)
-        
+if 'lib' not in sys.path:
+    sys.path[0:0] = ['lib']
+      
+app_config = {
+  'webapp2_extras.sessions': {
+    'cookie_name': '_simpleauth_sess',
+    'secret_key': SESSION_KEY
+  },
+  'webapp2_extras.auth': {
+    'user_attributes': []
+  }
+}
 
 paths = [
-            webapp2.Route(r'/', handler = LandingPage),
-            webapp2.Route(r'/home/<year>/<month>',handler = HomePage),
-            webapp2.Route(r'/test', handler = MyHandler),
+            Route(r'/', handler = LandingPage),
+            Route(r'/home/<year>/<month>',handler = HomePage),
+            Route('/logout', handler='auth_handlers.AuthHandler:logout', name='logout'),
+            Route('/auth/<provider>', handler='auth_handlers.AuthHandler:_simple_auth', name='auth_login'),
+            Route('/auth/<provider>/callback', handler='auth_handlers.AuthHandler:_auth_callback', name='auth_callback')
         ]
 
-application = webapp2.WSGIApplication(paths , debug=True)
+application = webapp2.WSGIApplication(paths , config=app_config ,debug=True)
