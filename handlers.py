@@ -1,10 +1,11 @@
-from google.appengine.api import users
-import webapp2
+from auth_handlers import BaseRequestHandler
 
-class LandingPage(webapp2.RequestHandler):
+class LandingPage(BaseRequestHandler):
 
     def get(self):
         self.response.headers['Content-Type'] = 'application/json'
-        user = users.get_current_user()
-            
-        self.response.write({'user':user,'auth' : 's'})
+        
+        if self.logged_in == True:
+            self.response.write({'user':self.current_user})
+        else:
+            self.response.write({'user':None})

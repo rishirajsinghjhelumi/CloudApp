@@ -4,9 +4,6 @@ from webapp2 import Route
 
 from secrets import SESSION_KEY
 
-from handlers import LandingPage
-from journey.handlers import HomePage
-
 if 'lib' not in sys.path:
     sys.path[0:0] = ['lib']
       
@@ -21,8 +18,8 @@ app_config = {
 }
 
 paths = [
-            Route(r'/', handler = LandingPage),
-            Route(r'/home/<year>/<month>',handler = HomePage),
+            Route(r'/', handler = 'handlers.LandingPage'),
+            Route(r'/home/<year>/<month>',handler = 'journey.handlers.HomePage'),
             Route('/logout', handler='auth_handlers.AuthHandler:logout', name='logout'),
             Route('/auth/<provider>', handler='auth_handlers.AuthHandler:_simple_auth', name='auth_login'),
             Route('/auth/<provider>/callback', handler='auth_handlers.AuthHandler:_auth_callback', name='auth_callback'),
