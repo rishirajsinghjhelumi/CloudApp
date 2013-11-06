@@ -93,7 +93,7 @@ class JourneyGet(BaseRequestHandler):
         
         milestones = []
         for milestone in query.run():
-            milestoneInfo = milestone.__dict__['_entity']
+            milestoneInfo = dict(milestone.__dict__['_entity'])
             milestoneInfo['milestone_id'] = str(milestone.key())
             milestones.append(milestoneInfo)
         

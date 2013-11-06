@@ -45,13 +45,17 @@ def deleteMilestone(milestone):
         image = Image.get(milestone.image)
         if image != None:
             Image.delete(image)
+            
+    query = db.Query(MilestoneAttachment)
+    query.filter('milestone_id = ',str(milestone.key()))
+    for attachment in query.run():
+        deleteAttachment(attachment)
     
     if milestone != None:
         Milestone.delete(milestone)
 
 class MilestoneDelete(BaseRequestHandler):
     
-    #TODO delete milestone attachments
     def get(self,milestone_id):
         self.response.headers['Content-Type'] = 'application/json'
         
@@ -77,6 +81,18 @@ class MilestoneGet(BaseRequestHandler):
         
         milestoneInfo = dict(milestone.__dict__['_entity'])
         milestoneInfo['milestone_id'] = milestone_id
+        
+        query = db.Query(MilestoneAttachment)
+        query.filter('milestone_id = ',milestone_id)
+        query.order('time')
+        
+        attachments = []
+        for attachment in query.run():
+            attachmentInfo = dict(attachment.__dict__['_entity'])
+            attachmentInfo['attachment_id'] = str(attachment.key())
+            attachments.append(attachmentInfo)
+            
+        milestoneInfo['attachments'] = attachments
         
         self.response.write({'milestone' : milestoneInfo})
 
