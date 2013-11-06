@@ -2,10 +2,10 @@ from google.appengine.ext import db
 
 class Blog(db.Model):
     
-    id = db.IntegerProperty()
+    id = db.StringProperty()
     
     blog_id = db.StringProperty()
     blog_url = db.StringProperty()
     
-    user_id = db.IntegerProperty(required=True)
-    journey_id = db.IntegerProperty(required=True)
+    user_id = db.StringProperty(required=True)
+    journey_id = db.StringProperty(required=True)

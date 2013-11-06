@@ -25,7 +25,7 @@ paths = [
             Route('/auth/<provider>', handler='auth_handlers.AuthHandler:_simple_auth', name='auth_login'),
             Route('/auth/<provider>/callback', handler='auth_handlers.AuthHandler:_auth_callback', name='auth_callback'),
             Route('/profile', handler='auth_handlers.ProfileHandler', name='profile'),
-            Route('/img/<image_id>', handler='image_handler.GetImage', name='getImg'), 
+            Route('/img/<image_id>', handler='image_handler.GetImage', name='getImg'),
         ]
 
 application = webapp2.WSGIApplication(paths , config=app_config ,debug=True)
