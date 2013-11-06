@@ -1,12 +1,8 @@
 from google.appengine.ext import db
-from ..models import Location
 
 class Journey(db.Model):
     
-    id = db.IntegerProperty(required=True)
-    
-    start_location = Location()
-    stop_location = Location()
+    id = db.IntegerProperty()
     
     name = db.StringProperty()
     description = db.StringProperty()

@@ -2,7 +2,7 @@ from google.appengine.ext import db
 
 class Blog(db.Model):
     
-    id = db.IntegerProperty(required=True)
+    id = db.IntegerProperty()
     
     blog_id = db.StringProperty()
     blog_url = db.StringProperty()

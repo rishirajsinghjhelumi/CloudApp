@@ -1,11 +1,13 @@
 from google.appengine.ext import db
-from ..models import Location
 
 class Milestone(db.Model):
     
-    id = db.IntegerProperty(required=True)
+    id = db.IntegerProperty()
     
-    location = Location()
+    latitude = db.FloatProperty()
+    longitude = db.FloatProperty()
+    location = db.StringProperty()
+    time = db.IntegerProperty()
     
     description = db.StringProperty()
     image = db.StringProperty()
@@ -15,7 +17,7 @@ class Milestone(db.Model):
 
 class MilestoneAttachment(db.Model):
     
-    id = db.IntegerProperty(required=True)
+    id = db.IntegerProperty()
     
     type = db.StringProperty(choices=set(["text", "image", "video"]))
     url = db.StringProperty(required=True)
