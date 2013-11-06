@@ -2,7 +2,6 @@ from google.appengine.ext import db
 
 from util import getTimeEpoch
 
-from journey.model import Journey
 from auth_handlers import BaseRequestHandler
 from image_handler import PostImage,Image
 from milestone.model import Milestone,MilestoneAttachment
@@ -80,5 +79,44 @@ class MilestoneGet(BaseRequestHandler):
         milestoneInfo['milestone_id'] = milestone_id
         
         self.response.write({'milestone' : milestoneInfo})
+
+
+class MilestoneAttachmentAdd(BaseRequestHandler):
+    
+    def post(self):
+        self.response.headers['Content-Type'] = 'application/json'
         
+        newAttachment = MilestoneAttachment(milestone_id = self.request.get('milestone_id'))
+        newAttachment.description = self.request.get('description')
+        newAttachment.image = PostImage(self.request.POST.multi['image'])
+        newAttachment.time = getTimeEpoch()
+        
+        newAttachment.put()
+        
+        self.response.write({'attachment_id' : str(newAttachment.key())})
+        
+def deleteAttachment(attachment):
+    
+    if attachment.image != None:
+        image = Image.get(attachment.image)
+        if image != None:
+            Image.delete(image)
+    
+    if attachment != None:
+        MilestoneAttachment.delete(attachment)
+
+class MilestoneAttachmentDelete(BaseRequestHandler):
+    
+    def get(self,attachment_id):
+        self.response.headers['Content-Type'] = 'application/json'
+        
+        attachment = MilestoneAttachment.get(attachment_id)
+        
+        if attachment == None:
+            self.response.write({'status' : 0})
+            return
+        
+        deleteAttachment(attachment)
+        
+        self.response.write({'status' : 1})
         

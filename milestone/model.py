@@ -17,6 +17,7 @@ class MilestoneAttachment(db.Model):
     
     description = db.StringProperty()
     image = db.StringProperty()
+    time = db.IntegerProperty()
     
     milestone_id = db.StringProperty(required=True)
     

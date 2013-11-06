@@ -37,6 +37,9 @@ paths = [
             Route('/milestone/delete/<milestone_id>', handler='milestone.handlers.MilestoneDelete', name='deleteMilestone'),
             Route('/milestone/get/<milestone_id>', handler='milestone.handlers.MilestoneGet', name='getMilestone'),
             
+            Route('/attachment/new', handler='milestone.handlers.MilestoneAttachmentAdd', name='addAttachment'),
+            Route('/attachment/delete/<attachment_id>', handler='milestone.handlers.MilestoneAttachmentDelete', name='deleteAttachment'),
+            
         ]
 
 application = webapp2.WSGIApplication(paths , config=app_config ,debug=True)
