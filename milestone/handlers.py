@@ -66,4 +66,21 @@ class MilestoneDelete(BaseRequestHandler):
         deleteMilestone(milestone)
         
         self.response.write({'status' : 1})
+
+class MilestoneGet(BaseRequestHandler):
+    
+    def get(self,milestone_id):
+        self.response.headers['Content-Type'] = 'application/json'
+        
+        milestone = Milestone.get(milestone_id)
+        
+        if milestone == None:
+            self.response.write({'milestone' : None})
+            return
+        
+        milestoneInfo = dict(milestone.__dict__['_entity'])
+        milestoneInfo['milestone_id'] = milestone_id
+        
+        self.response.write({'milestone' : milestoneInfo})
+        
         

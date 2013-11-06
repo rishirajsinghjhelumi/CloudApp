@@ -35,6 +35,7 @@ paths = [
             Route('/milestone/try', handler='milestone.handlers.Try', name='Try'),
             Route('/milestone/new', handler='milestone.handlers.MilestoneNew', name='newMilestone'),
             Route('/milestone/delete/<milestone_id>', handler='milestone.handlers.MilestoneDelete', name='deleteMilestone'),
+            Route('/milestone/get/<milestone_id>', handler='milestone.handlers.MilestoneGet', name='getMilestone'),
             
         ]
 
