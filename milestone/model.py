@@ -15,8 +15,8 @@ class Milestone(db.Model):
 
 class MilestoneAttachment(db.Model):
     
-    type = db.StringProperty(choices=set(["text", "image", "video"]))
-    content = db.StringProperty(required=True)
+    description = db.StringProperty()
+    image = db.StringProperty()
     
     milestone_id = db.StringProperty(required=True)
     
