@@ -6,6 +6,8 @@ class Journey(db.Model):
     description = db.StringProperty()
     image = db.StringProperty()
     
+    time = db.IntegerProperty()
+    
     user_id = db.StringProperty(required=True)
     
     
