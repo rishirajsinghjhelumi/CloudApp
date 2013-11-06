@@ -32,6 +32,10 @@ paths = [
             Route('/journey/get/<journey_id>', handler='journey.handlers.JourneyGet', name='getJourney'),
             Route('/journey/getall', handler='journey.handlers.JourneyGetAll', name='getAllJourney'),
             
+            Route('/milestone/try', handler='milestone.handlers.Try', name='Try'),
+            Route('/milestone/new', handler='milestone.handlers.MilestoneNew', name='newMilestone'),
+            Route('/milestone/delete/<milestone_id>', handler='milestone.handlers.MilestoneDelete', name='deleteMilestone'),
+            
         ]
 
 application = webapp2.WSGIApplication(paths , config=app_config ,debug=True)

@@ -8,6 +8,7 @@ from journey.model import Journey
 from auth_handlers import BaseRequestHandler
 from image_handler import PostImage,Image
 from milestone.model import Milestone
+from milestone.handlers import deleteMilestone
 
 class Try(webapp2.RequestHandler):
     
@@ -43,6 +44,21 @@ class JourneyNew(BaseRequestHandler):
         
         self.response.write({'journey_id' : str(newJourney.key())})
         
+def deleteJourney(journey):
+    
+    if journey.image != None:
+        image = Image.get(journey.image)
+        if image != None:
+            Image.delete(image)
+        
+    query = db.Query(Milestone)
+    query.filter('journey_id = ',str(journey.key()))
+    for milestone in query.run():
+        deleteMilestone(milestone)
+    
+    if journey != None:
+        Journey.delete(journey)
+        
 class JourneyDelete(BaseRequestHandler):
     
     def get(self,journey_id):
@@ -53,12 +69,7 @@ class JourneyDelete(BaseRequestHandler):
             self.response.write({'status' : 0})
             return
          
-        image = Image.get(journey.image)
-        if image != None:
-            Image.delete(image)
-        
-        if journey != None:
-            Journey.delete(journey)
+        deleteJourney(journey)
         
         self.response.write({'status' : 1})
         
@@ -73,7 +84,7 @@ class JourneyGet(BaseRequestHandler):
             self.response.write({'journey' : None})
             return
         
-        journeyInfo = journey.__dict__['_entity']
+        journeyInfo = dict(journey.__dict__['_entity'])
         journeyInfo['journey_id'] = journey_id
         
         query = db.Query(Milestone)
@@ -85,8 +96,8 @@ class JourneyGet(BaseRequestHandler):
             milestoneInfo = milestone.__dict__['_entity']
             milestoneInfo['milestone_id'] = str(milestone.key())
             milestones.append(milestoneInfo)
-            
-        journeyInfo['milestones'] = None if milestones == [] else milestones
+        
+        journeyInfo['milestones'] = milestones
                 
         self.response.write({'journey' : journeyInfo})
 
@@ -103,7 +114,7 @@ class JourneyGetAll(BaseRequestHandler):
         
         journeys = []
         for journey in query.run():
-            journeyInfo = journey.__dict__['_entity']
+            journeyInfo = dict(journey.__dict__['_entity'])
             journeyInfo['journey_id'] = str(journey.key()) 
             journeys.append(journeyInfo)
         
