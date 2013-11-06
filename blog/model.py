@@ -2,8 +2,6 @@ from google.appengine.ext import db
 
 class Blog(db.Model):
     
-    id = db.StringProperty()
-    
     blog_id = db.StringProperty()
     blog_url = db.StringProperty()
     
