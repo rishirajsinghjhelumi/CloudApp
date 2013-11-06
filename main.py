@@ -1,6 +1,7 @@
 import webapp2
 import sys
 from webapp2 import Route
+from google.appengine.ext import db
 
 from secrets import SESSION_KEY
 
@@ -16,7 +17,7 @@ app_config = {
     'user_attributes': []
   }
 }
-
+            
 paths = [
             Route(r'/', handler = 'handlers.LandingPage'),
             Route(r'/home/<year>/<month>',handler = 'journey.handlers.HomePage'),
@@ -24,6 +25,7 @@ paths = [
             Route('/auth/<provider>', handler='auth_handlers.AuthHandler:_simple_auth', name='auth_login'),
             Route('/auth/<provider>/callback', handler='auth_handlers.AuthHandler:_auth_callback', name='auth_callback'),
             Route('/profile', handler='auth_handlers.ProfileHandler', name='profile'),
+            Route('/img/<image_id>', handler='image_handler.GetImage', name='getImg'), 
         ]
 
 application = webapp2.WSGIApplication(paths , config=app_config ,debug=True)

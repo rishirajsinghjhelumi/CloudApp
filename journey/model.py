@@ -1,7 +1,7 @@
 from google.appengine.ext import db
 from ..models import Location
 
-class Journey(db.Model,Location):
+class Journey(db.Model):
     
     id = db.IntegerProperty(required=True)
     

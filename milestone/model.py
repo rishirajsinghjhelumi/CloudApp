@@ -1,7 +1,7 @@
 from google.appengine.ext import db
 from ..models import Location
 
-class Milestone(db.Model,Location):
+class Milestone(db.Model):
     
     id = db.IntegerProperty(required=True)
     
@@ -13,7 +13,7 @@ class Milestone(db.Model,Location):
     journey_id = db.IntegerProperty(required=True)
     
 
-class MilestoneAttachment(db.Model,Location):
+class MilestoneAttachment(db.Model):
     
     id = db.IntegerProperty(required=True)
     
