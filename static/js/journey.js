@@ -96,7 +96,7 @@ var getMilestoneInfo = function(milestoneId){
 }
 
 
-var createAttachment(milestoneId){
+var createAttachment = function(milestoneId){
 	
 	var url = "/attachment/new";
 	
