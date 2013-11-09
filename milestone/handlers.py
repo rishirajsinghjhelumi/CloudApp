@@ -6,6 +6,8 @@ from auth_handlers import BaseRequestHandler
 from image_handler import PostImage,Image
 from milestone.model import Milestone,MilestoneAttachment
 
+import json
+
 class Try(BaseRequestHandler):
     
     def get(self):
@@ -37,7 +39,7 @@ class MilestoneNew(BaseRequestHandler):
         
         newMilestone.put()
         
-        self.response.write({'milestone_id' : str(newMilestone.key())})
+        self.response.write(json.dumps({'milestone_id' : str(newMilestone.key())}))
         
 def deleteMilestone(milestone):
     
@@ -66,7 +68,7 @@ class MilestoneDelete(BaseRequestHandler):
         
         deleteMilestone(milestone)
         
-        self.response.write({'status' : 1})
+        self.response.write(json.dumps({'status' : 1}))
 
 class MilestoneGet(BaseRequestHandler):
     
@@ -94,7 +96,7 @@ class MilestoneGet(BaseRequestHandler):
             
         milestoneInfo['attachments'] = attachments
         
-        self.response.write({'milestone' : milestoneInfo})
+        self.response.write(json.dumps({'milestone' : milestoneInfo}))
 
 
 class MilestoneAttachmentAdd(BaseRequestHandler):
@@ -109,7 +111,7 @@ class MilestoneAttachmentAdd(BaseRequestHandler):
         
         newAttachment.put()
         
-        self.response.write({'attachment_id' : str(newAttachment.key())})
+        self.response.write(json.dumps({'attachment_id' : str(newAttachment.key())}))
         
 def deleteAttachment(attachment):
     
@@ -134,5 +136,5 @@ class MilestoneAttachmentDelete(BaseRequestHandler):
         
         deleteAttachment(attachment)
         
-        self.response.write({'status' : 1})
+        self.response.write(json.dumps({'status' : 1}))
         

@@ -1,11 +1,13 @@
 from auth_handlers import BaseRequestHandler
+from google.appengine.ext.webapp import template
+import os
 
 class LandingPage(BaseRequestHandler):
 
     def get(self):
-        self.response.headers['Content-Type'] = 'application/json'
         
         if self.logged_in == True:
-            self.response.write({'user':self.current_user})
+            #self.response.write({'user':self.current_user}
+            self.render('map.html') 
         else:
             self.response.write({'user':None})

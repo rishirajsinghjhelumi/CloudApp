@@ -223,7 +223,7 @@ class SimpleAuthHandler(object):
     
     resp = urlfetch.fetch(
       url=access_token_url, 
-      payload=urlencode(payload), 
+      payload=urlencode(payload),
       method=urlfetch.POST,
       headers={'Content-Type': 'application/x-www-form-urlencoded'}
     )

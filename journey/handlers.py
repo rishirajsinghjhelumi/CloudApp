@@ -10,6 +10,8 @@ from image_handler import PostImage,Image
 from milestone.model import Milestone
 from milestone.handlers import deleteMilestone
 
+import json
+
 class Try(webapp2.RequestHandler):
     
     def get(self):
@@ -42,7 +44,7 @@ class JourneyNew(BaseRequestHandler):
         
         newJourney.put()
         
-        self.response.write({'journey_id' : str(newJourney.key())})
+        self.response.write(json.dumps({'journey_id' : str(newJourney.key())}))
         
 def deleteJourney(journey):
     
@@ -71,7 +73,7 @@ class JourneyDelete(BaseRequestHandler):
          
         deleteJourney(journey)
         
-        self.response.write({'status' : 1})
+        self.response.write(json.dumps({'status' : 1}))
         
 class JourneyGet(BaseRequestHandler):
     
@@ -98,8 +100,8 @@ class JourneyGet(BaseRequestHandler):
             milestones.append(milestoneInfo)
         
         journeyInfo['milestones'] = milestones
-                
-        self.response.write({'journey' : journeyInfo})
+        
+        self.response.write(json.dumps({'journey' : journeyInfo}))
 
 class JourneyGetAll(BaseRequestHandler):
     
@@ -117,5 +119,5 @@ class JourneyGetAll(BaseRequestHandler):
             journeyInfo = dict(journey.__dict__['_entity'])
             journeyInfo['journey_id'] = str(journey.key()) 
             journeys.append(journeyInfo)
-        
-        self.response.write({'journeys' : journeys})
+            
+        self.response.write(json.dumps({'journeys' : journeys}))

@@ -10,6 +10,9 @@ SESSION_KEY = "a very long and secret session key goes here"
 GOOGLE_APP_ID = '211096637650-9bjjsv0npb491ugtg93trno3hmmu8pof.apps.googleusercontent.com'
 GOOGLE_APP_SECRET = 'P378SE-kI5qblDb4dAVsOFlk'
 
+#GOOGLE_APP_ID = '211096637650-lpvumq2suu8426mj3vdudcghefdb8gu6.apps.googleusercontent.com'
+#GOOGLE_APP_SECRET = 'e76rya2b8LvoBQZRzqxO0aes'
+
 # Facebook auth apis
 FACEBOOK_APP_ID = 'app id'
 FACEBOOK_APP_SECRET = 'app secret'
