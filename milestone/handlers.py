@@ -138,3 +138,19 @@ class MilestoneAttachmentDelete(BaseRequestHandler):
         
         self.response.write(json.dumps({'status' : 1}))
         
+class MilestoneAttachmentGet(BaseRequestHandler):
+    
+    def get(self,attachment_id):
+        self.response.headers['Content-Type'] = 'application/json'
+        
+        attachment = MilestoneAttachment.get(attachment_id)
+        
+        if attachment == None:
+            self.response.write({'attachment' : None})
+            return
+        
+        attachmentInfo = dict(attachment.__dict__['_entity'])
+        attachmentInfo['attachment_id'] = attachment_id
+        
+        self.response.write(json.dumps({'attachment' : attachmentInfo}))
+        

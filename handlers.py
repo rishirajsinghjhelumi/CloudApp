@@ -8,6 +8,6 @@ class LandingPage(BaseRequestHandler):
         
         if self.logged_in == True:
             #self.response.write({'user':self.current_user}
-            self.render('map.html') 
+            self.render('try.html') 
         else:
             self.response.write({'user':None})

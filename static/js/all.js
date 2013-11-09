@@ -146,19 +146,7 @@ var JourneyMap = function(journeyId,markers){
 
 }
 
-var makeNewJourney = function(){ 
-	$.ajax({
-		  type: "GET",
-		  dataType: 'json',
-		  url: "/journey/getall"
-		}).done(function(data) {
-		  alert(JSON.stringify(data));
-		},"json");
-}
-
 var json = {"path":[{"latitude":17.947380678685217,"longitude":78.695068359375},{"latitude":17.340151652399424,"longitude":78.28857421875}]};
 var newMap = new JourneyMap(1,json);
 
 google.maps.event.addDomListener(window, 'load', function(){ newMap.init() });
-
-makeNewJourney();

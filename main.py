@@ -39,6 +39,7 @@ paths = [
             
             Route('/attachment/new', handler='milestone.handlers.MilestoneAttachmentAdd', name='addAttachment'),
             Route('/attachment/delete/<attachment_id>', handler='milestone.handlers.MilestoneAttachmentDelete', name='deleteAttachment'),
+            Route('/attachment/get/<attachment_id>', handler='milestone.handlers.MilestoneAttachmentGet', name='getAttachment'),
             
         ]
 
