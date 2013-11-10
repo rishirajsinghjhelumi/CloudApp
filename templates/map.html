@@ -1,15 +1,16 @@
+
 <!DOCTYPE html>
 <html>
 <head>
 <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
 <meta charset="utf-8">
 <title>Complex Polylines</title>
-<link rel="stylesheet" href = "/css/bootstrap.min.css" />
+<link rel="stylesheet" href="/css/bootstrap.min.css" />
 <style>
 html,body,#map-canvas {
 	height: 100%;
-	margin: 0px;
-	padding: 0px
+	margin: 10px;
+	padding: 10px;
 }
 
 #infoWindow {
@@ -18,9 +19,148 @@ html,body,#map-canvas {
 
 #photobooth {
 	background: white;
-	opacity :0.8;
-	padding: 10px;
+	opacity: 0.8;
+	padding: 20px;
+	height: 350px;
+	width: 200px;
 }
+
+.forscroll {
+	overflow-y: auto;
+	overflow-x: visible;
+	display: inline-block;
+}
+
+ul.enlarge {
+	list-style-type: none; /*remove the bullet point*/
+	margin-left: 0;
+}
+
+ul.enlarge li {
+	display: inline-block; /*places the images in a line*/
+	position: relative;
+	z-index: 0;
+	/*resets the stack order of the list items - later we'll increase this*/
+	margin: 10px 40px 0 20px;
+}
+
+ul.enlarge img {
+	background-color: #eae9d4;
+	padding: 6px;
+	-webkit-box-shadow: 0 0 6px rgba(132, 132, 132, .75);
+	-moz-box-shadow: 0 0 6px rgba(132, 132, 132, .75);
+	box-shadow: 0 0 6px rgba(132, 132, 132, .75);
+	-webkit-border-radius: 4px;
+	-moz-border-radius: 4px;
+	border-radius: 4px;
+}
+
+ul.enlarge span {
+	position: absolute;
+	left: -9999px;
+	background-color: #eae9d4;
+	padding: 10px;
+	font-family: 'Droid Sans', sans-serif;
+	font-size: .9em;
+	text-align: center;
+	color: #495a62;
+	-webkit-box-shadow: 0 0 20px rgba(0, 0, 0, .75) );
+	-moz-box-shadow: 0 0 20px rgba(0, 0, 0, .75);
+	box-shadow: 0 0 20px rgba(0, 0, 0, .75);
+	-webkit-border-radius: 8px;
+	-moz-border-radius: 8px;
+	border-radius: 8px;
+}
+
+ul.enlarge li:hover {
+	z-index: 50;
+	cursor: pointer;
+}
+
+ul.enlarge span img {
+	padding: 2px;
+	background: #ccc;
+}
+
+ul.enlarge li:hover span {
+	top: -30px;
+	/*the distance from the bottom of the thumbnail to the top of the popup image*/
+	left: -50px;
+	/*distance from the left of the thumbnail to the left of the popup image*/
+}
+
+ul.enlarge li:hover:nth-child(2) span {
+	left: -100px;
+}
+
+ul.enlarge li:hover:nth-child(3) span {
+	left: -200px;
+}
+/**IE Hacks - see http://css3pie.com/ for more info on how to use CS3Pie and to download the latest version**/
+ul.enlarge img,ul.enlarge span {
+	behavior: url(pie/PIE.htc);
+}
+
+.optdiv {
+	margin: 0px;
+	height: 500px;
+}
+
+ul {
+	list-style-type: none;
+	width: 360px;
+}
+
+h3 {
+	font: bold 20px/1.5 Helvetica, Verdana, sans-serif;
+}
+
+li img {
+	float: left;
+	margin: 0 15px 0 0;
+}
+
+li p {
+	font: 200 12px/1.5 Georgia, Times New Roman, serif;
+}
+
+.para {
+	font: 200 12px/1.5 Georgia, Times New Roman, serif;
+}
+
+li {
+	padding: 10px;
+	overflow: auto;
+}
+
+li:hover {
+	background: #eee;
+	cursor: pointer;
+}
+
+li:hover a {
+	visibility: visible;
+}
+
+li a {
+	text-decoration: none;
+	color: rgb(0, 0, 0);
+	visibility: hidden;
+}
+
+li a:hover {
+	background-color: #FF704D;
+}
+
+.lefty {
+	display: inline-block
+}
+
+.righty {
+	display: inline-block;
+	float: right
+}
+
 </style>
 
 <script
@@ -32,17 +172,56 @@ html,body,#map-canvas {
 
 </head>
 <body>
-	<form name="new_journey_form" id="new_journey_form"
-		action="/journey/new" method="POST" enctype="multipart/form-data">
-		Name: <input type="text" name="name" /> <br /> Description :<input
-			type="text" name="description" /> <br /> Image :<input type="file"
-			name="image" /><br /> <input type="submit" value="Submit">
+	
+
+	<div class="container-fluid">
+		<div class="row-fluid">
+		<div class="span6">
+		<form name="new_journey_form" id="new_journey_form"
+		action="/journey/new" method="POST" enctype="multipart/form-data"
+		class="form-horizontal">
+		<legend>Enter Journey Details</legend>
+		<div class="control-group">
+			<label class="control-label" for="inputEmail">Name :</label>
+			<div class="controls">
+				<input type="text" name="name" id="inputname" placeholder="Name">
+			</div>
+		</div>
+		<div class="control-group">
+			<label class="control-label" for="inputEmail">Description :</label>
+			<div class="controls">
+				<input type="text" name="description" id="inputdescription"
+					placeholder="Description">
+			</div>
+		</div>
+		<div class="control-group">
+			<label class="control-label" for="inputEmail">Image :</label>
+			<div class="controls">
+				<input type="file" name="image" id="inputimage" placeholder="Image">
+			</div>
+		</div>
+		<div class="control-group">
+			<div class="controls">
+				<!--			<input type="submit" value="Submit">  -->
+				<button type="submit" value="Submit" class="btn btn-primary">Add
+					Journey</button>
+			</div>
+		</div>
 
 	</form>
-	<div id="map-canvas"></div>
-	<p id="error"></p>
-	<div id="photobooth">
-		<p>Captures</p>
+		</div>
+			<div class="span6" style="overflow: auto;">
+				<div class="optdiv">
+					<ul id="list">
+						
+					</ul>
+
+				</div>
+			</div>
+		</div>
 	</div>
+	<div id="map-canvas"></div>
+				<p id="error"></p>
+				<div id="photobooth"></div>
 </body>
 </html>

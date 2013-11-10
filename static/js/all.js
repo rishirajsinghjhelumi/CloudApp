@@ -94,14 +94,13 @@ var JourneyMap = function(journeyId,markers){
 		$("#photobooth").empty();
 
 		var div = document.createElement('div');
-
-		var content = '<ul class="thumbnails">';
-		content += '<li class="span4">';
+//		div.className = "forscroll";
+		var content = '<ul class="thumbnails enlarge span4">';
 		for(var i=0;i<milestone['attachments'].length;i++){
-			content += '<a href="#" class="thumbnail"><img alt="100%x180" style="height: 180px; width: 100%; display: block;" ' + 
-						'src = "/image/' + milestone['attachments'][i]['image'] + '"></a>';
+			content += '<li>';
+			content += '<img alt="100%x180" height="100px" width="150px" ' + 'src = "/image/' + milestone['attachments'][i]['image'] + '"><span><img' + ' src = "/image/' + milestone['attachments'][i]['image'] + '"><br /></span>';
+			content += '</li>';
 		}
-		content += '</li>';
 		content += '</ul>';
 		div.innerHTML = content;
 		photobooth.appendChild(div);
@@ -109,8 +108,6 @@ var JourneyMap = function(journeyId,markers){
 	}
 
 	this.addMarker = function(markerLocation,markerLatLngObj,currentPathLength,milestone){
-		
-		var self = this;
 		
 		var marker = new google.maps.Marker({
 			position: markerLatLngObj,
@@ -120,7 +117,7 @@ var JourneyMap = function(journeyId,markers){
 
 		//Server Calls
 		var milestoneId = null;
-		if(milestoneId == null){
+		if(milestone == null){
 			milestoneId = createNewMilestone(this.journeyId,markerLatLngObj.nb,markerLatLngObj.ob,markerLocation);
 			this.markers.push(getMilestoneInfo(milestoneId));
 			milestone = this.markers[this.markers.length - 1];
@@ -129,22 +126,36 @@ var JourneyMap = function(journeyId,markers){
 			milestoneId = milestone.milestone_id;
 		}
 
-		this.googleMarkers.push(marker);
-
 		var getXY = function mousePos (e) {
 			mouseX = e.pageX; 
 			mouseY = e.pageY;
 		}
+		
+		var self = this;
 
 		google.maps.event.addListener(marker, "click", function() {
 			
 			var formName = "new_milestone_attachment_form" + "__" + milestoneId;
 			var message = '<form id="' + formName + 
-						'" action="/attachment/new" method="POST" enctype="multipart/form-data">' + 
-						'Image: <input type="file" name="image" accept="image/*">' + 
-						'<br><textarea cols="1000" name="description">' + 
-						'</textarea><br><input type="submit" value="Add">' + 
-						'</form>';
+			'" action="/attachment/new" method="POST" enctype="multipart/form-data">' +
+			'<div class="control-group">' +
+			'<label class="control-label" for="inputEmail">Image :</label>' +
+			'<div class="controls">' +
+			'<input type="file" name="image" accept="image/*">' + 
+			'</div></div>' +
+
+			'<div class="control-group">' +
+			'<label class="control-label" for="inputDesc">Description :</label>' +
+			'<div class="controls">' +
+			'<textarea cols="1000" name="description">' + 
+			'</textarea>' +
+			'</div></div>' +
+
+			'<div class="control-group">' +
+			'<div class="controls">' +
+			'<button type="submit" value="Add" class="btn btn-primary">Add</button>' + 
+			'</div></div>' +
+			'</form>';
 			var infoWindow = new google.maps.InfoWindow({
 				content: message
 			});
@@ -165,6 +176,8 @@ var JourneyMap = function(journeyId,markers){
 			self.displayImages(milestone);
 
 		});
+		
+		self = this;
 
 		google.maps.event.addListener(marker, 'mouseover', function() {
 			document.addEventListener('mousemove', getXY,false);
@@ -177,6 +190,8 @@ var JourneyMap = function(journeyId,markers){
 		google.maps.event.addListener(marker, "dblclick", function() {
 			self.deleteMarker(marker,milestoneId);
 		});
+		
+		this.googleMarkers.push(marker);
 
 		this.map.panTo(markerLatLngObj);
 
@@ -196,10 +211,14 @@ var JourneyMap = function(journeyId,markers){
 				break;
 			}
 		}
+		console.log(this.markers);
 
 		this.poly.setMap(null);
 		marker.setMap(null);
 		this.setAllMap();
+		for (var i = 0; i < this.googleMarkers.length; i++) {
+			this.googleMarkers[i].setMap(null);
+		}
 
 		this.googleMarkers = [];
 		this.poly = new google.maps.Polyline(this.polyOptions);
@@ -254,8 +273,41 @@ var getAllJourneys = function(){
 	$.ajax({
 		url: url,
 		type: 'GET',
+		async: false,
 	}).done(function(data) {
-		console.log(data);
+		
+		var journeys = data['journeys'];
+		for(var i=0;i<journeys.length;i++){
+			
+			var id = "list__" + journeys[i]['journey_id'];
+			var linkId = id + "__remove";
+			var listElement = '<li id="'+ id +
+			'"><img style="height:100px; width:100px;" src="/image/' + journeys[i]['image'] +'"> ' +
+			'<div><div class="lefty">' + 
+			'<h3>' + journeys[i]['name'] + '</h3>' + 
+			'</div>' + 
+			'<div class="righty">' + 
+			'<a href="#" class="remove" data-toggle="tooltip" id="' + linkId + '" ' +
+			'title="Delete this Journey" data-placement="bottom">&times;</a>' +
+			'</div></div>' + 
+			'<p>' + journeys[i]['description'] + '</p></li>';
+			
+			$('#list').append(listElement);
+			
+			$('#' + linkId ).click(function() {
+				  var id = $(this).attr('id');
+				  id = id.split("__remove")[0];
+				  $('#' + id).remove();
+			});
+			
+			$('#' + id ).click(function() {
+				var id = $(this).attr('id');
+				var journeyId = id.split("list__")[1];
+				loadJourney(journeyId);
+			});
+			
+		}
+		
 	},"json");
 
 }
@@ -266,6 +318,7 @@ var loadJourney = function(journeyId){
 
 	$.ajax({
 		url: url,
+		async:false,
 		type: 'GET',
 	}).done(function(data) {
 		TTB.Map = new JourneyMap(data['journey']['journey_id'],data['journey']['path']);
@@ -298,6 +351,7 @@ var deleteMilestone = function(milestoneId){
 	$.ajax({
 		url: url,
 		type: 'GET',
+		async: false,
 	}).done(function(data) {
 		console.log(data);
 	},"json");
@@ -398,5 +452,7 @@ $(document).ready(function() {
 		e.preventDefault();
 		newJourney();
 	});
+	
+	getAllJourneys();
 
 });

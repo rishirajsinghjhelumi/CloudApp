@@ -191,7 +191,7 @@ class AuthHandler(BaseRequestHandler, SimpleAuthHandler):
     self.session.add_flash(auth_info, 'auth_info - from _on_signin(...)')
 
     # Go to the profile page
-    self.redirect('/profile')
+    self.redirect('/')
 
   def logout(self):
     self.auth.unset_session()
