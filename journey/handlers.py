@@ -7,7 +7,7 @@ from util import getTimeEpoch
 from journey.model import Journey
 from auth_handlers import BaseRequestHandler
 from image_handler import PostImage,Image
-from milestone.model import Milestone
+from milestone.model import Milestone,MilestoneAttachment
 from milestone.handlers import deleteMilestone
 
 import json
@@ -97,9 +97,22 @@ class JourneyGet(BaseRequestHandler):
         for milestone in query.run():
             milestoneInfo = dict(milestone.__dict__['_entity'])
             milestoneInfo['milestone_id'] = str(milestone.key())
+            
+            query1 = db.Query(MilestoneAttachment)
+            query1.filter('milestone_id = ',str(milestone.key()))
+            query1.order('time')
+            
+            attachments = []
+            for attachment in query1.run():
+                attachmentInfo = dict(attachment.__dict__['_entity'])
+                attachmentInfo['attachment_id'] = str(attachment.key())
+                attachments.append(attachmentInfo)
+            
+            milestoneInfo['attachments'] = attachments
+                
             milestones.append(milestoneInfo)
         
-        journeyInfo['milestones'] = milestones
+        journeyInfo['path'] = milestones
         
         self.response.write(json.dumps({'journey' : journeyInfo}))
 

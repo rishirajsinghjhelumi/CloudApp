@@ -132,7 +132,6 @@ var deleteAttachment = function(attachmentId){
 	
 }
 
-
 var getAttachment = function(attachmentId){
 	
 	var url = "/attachment/get/" + attachmentId;

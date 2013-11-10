@@ -1,6 +1,4 @@
 from auth_handlers import BaseRequestHandler
-from google.appengine.ext.webapp import template
-import os
 
 class LandingPage(BaseRequestHandler):
 
@@ -8,6 +6,6 @@ class LandingPage(BaseRequestHandler):
         
         if self.logged_in == True:
             #self.response.write({'user':self.current_user}
-            self.render('try.html') 
+            self.render('map.html') 
         else:
             self.response.write({'user':None})

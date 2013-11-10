@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+<meta charset="utf-8">
+<title>User Blog</title>
+<style>
+html,body,#map-canvas {
+	height: 100%;
+	margin: 0px;
+	padding: 0px;
+}
+
+@font-face {
+	font-family: customfont;
+	src: url('/css/TravelingTypewriter.ttf');
+}
+
+.fontface {
+	font-family: customfont;
+	font-size: 60px;
+}
+
+h1 {
+	text-align: center;
+}
+</style>
+
+<link href="/css/bootstrap.min.css" rel="stylesheet">
+<link href="/css/bootstrap-responsive.min.css" rel="stylesheet">
+
+<script
+	src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBoJsQ8A7od6F-9dFROYGWZRwS8Hex0VmY&sensor=true"></script>
+<script src="/js/jquery-1.10.2.min.js"></script>
+<script src="/js/all.js"></script>
+<script src="/js/journey.js"></script>
+
+</head>
+<body>
+	<div class="container">
+		<div class="row">
+			<div class="span12">
+				<h1 class="fontface">The Traveler Book</h1>
+			</div>
+		</div>
+		<div class="row">
+			<div class="span4"></div>
+			<div class="span8"></div>
+		</div>
+	</div>
+	<div id="map-canvas"></div>
+	<p id="error"></p>
+</body>
+</html>

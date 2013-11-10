@@ -1,24 +1,48 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
-    <meta charset="utf-8">
-    <title>Complex Polylines</title>
-    <style>
-      html, body, #map-canvas {
-        height: 100%;
-        margin: 0px;
-        padding: 0px
-      }
-    </style>
+<head>
+<meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+<meta charset="utf-8">
+<title>Complex Polylines</title>
+<link rel="stylesheet" href = "/css/bootstrap.min.css" />
+<style>
+html,body,#map-canvas {
+	height: 100%;
+	margin: 0px;
+	padding: 0px
+}
 
-    <script src = "https://maps.googleapis.com/maps/api/js?key=AIzaSyBoJsQ8A7od6F-9dFROYGWZRwS8Hex0VmY&sensor=true"></script>
-    <script src = "/js/jquery-1.10.2.min.js"></script>
-    <script src = "/js/all.js"></script>
-    
-      </head>
-  <body>
-    <div id="map-canvas"></div>
-    <p id="error"></p>
-  </body>
+#infoWindow {
+	width: 150px;
+}
+
+#photobooth {
+	background: white;
+	opacity :0.8;
+	padding: 10px;
+}
+</style>
+
+<script
+	src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBoJsQ8A7od6F-9dFROYGWZRwS8Hex0VmY&sensor=true"></script>
+<script src="/js/jquery-1.10.2.min.js"></script>
+<script src="/js/all.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+<script src="/js/bootstrap.file-input.js"></script>
+
+</head>
+<body>
+	<form name="new_journey_form" id="new_journey_form"
+		action="/journey/new" method="POST" enctype="multipart/form-data">
+		Name: <input type="text" name="name" /> <br /> Description :<input
+			type="text" name="description" /> <br /> Image :<input type="file"
+			name="image" /><br /> <input type="submit" value="Submit">
+
+	</form>
+	<div id="map-canvas"></div>
+	<p id="error"></p>
+	<div id="photobooth">
+		<p>Captures</p>
+	</div>
+</body>
 </html>
