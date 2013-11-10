@@ -92,7 +92,7 @@ var JourneyMap = function(journeyId,markers){
 		
 		var photobooth = document.getElementById('photobooth');
 		$("#photobooth").empty();
-
+		
 		var div = document.createElement('div');
 //		div.className = "forscroll";
 		var content = '<ul class="thumbnails enlarge span4">';
@@ -249,6 +249,7 @@ var newJourney = function(){
 		contentType: false,
 		processData: false
 	}).done(function(data) {
+		$('body').append('<div id="photobooth"></div>');
 		TTB.Map = new JourneyMap(data['journey_id'],[]);
 		TTB.Map.init();
 	},"json");
@@ -298,6 +299,8 @@ var getAllJourneys = function(){
 				  var id = $(this).attr('id');
 				  id = id.split("__remove")[0];
 				  $('#' + id).remove();
+				  id = id.split("list__")[1];
+				  deleteJourney(id);
 			});
 			
 			$('#' + id ).click(function() {
@@ -321,6 +324,7 @@ var loadJourney = function(journeyId){
 		async:false,
 		type: 'GET',
 	}).done(function(data) {
+		$('body').append('<div id="photobooth"></div>');
 		TTB.Map = new JourneyMap(data['journey']['journey_id'],data['journey']['path']);
 		TTB.Map.init();
 	},"json");
