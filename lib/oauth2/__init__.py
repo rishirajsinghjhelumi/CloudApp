@@ -628,7 +628,7 @@ class Client(httplib2.Http):
         self.token = token
         self.method = SignatureMethod_HMAC_SHA1()
 
-        httplib2.Http.__init__(self, cache=cache, timeout=timeout, proxy_info=proxy_info)
+        httplib2.Http.__init__(self, cache=cache, timeout=100, proxy_info=proxy_info)
 
     def set_signature_method(self, method):
         if not isinstance(method, SignatureMethod):
