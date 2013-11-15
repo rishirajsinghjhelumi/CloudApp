@@ -12,24 +12,12 @@ indexes:
   - name: time
     direction: desc
 
-# - kind: Cat
-#   ancestor: no
-#   properties:
-#   - name: name
-#   - name: age
-#     direction: desc
-
-# - kind: Cat
-#   properties:
-#   - name: name
-#     direction: asc
-#   - name: whiskers
-#     direction: desc
-
-# - kind: Store
-#   ancestor: yes
-#   properties:
-#   - name: business
-#     direction: asc
-#   - name: owner
-#     direction: asc
+- kind: Milestone
+  properties:
+  - name: journey_id
+  - name: time
+  
+- kind: MilestoneAttachment
+  properties:
+  - name: milestone_id
+  - name: time

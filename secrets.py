@@ -14,8 +14,8 @@ GOOGLE_APP_SECRET = 'P378SE-kI5qblDb4dAVsOFlk'
 #GOOGLE_APP_SECRET = 'e76rya2b8LvoBQZRzqxO0aes'
 
 # Facebook auth apis
-FACEBOOK_APP_ID = 'app id'
-FACEBOOK_APP_SECRET = 'app secret'
+FACEBOOK_APP_ID = '536756159749180'
+FACEBOOK_APP_SECRET = 'c44d187fd1e805165968322e8f83cb82'
 
 # Key/secret for both LinkedIn OAuth 1.0a and OAuth 2.0
 # https://www.linkedin.com/secure/developer
