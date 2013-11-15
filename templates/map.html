@@ -108,7 +108,7 @@ ul.enlarge img,ul.enlarge span {
 
 ul {
 	list-style-type: none;
-	width: 360px;
+	width: auto;
 }
 
 h3 {
@@ -160,7 +160,9 @@ li a:hover {
 	display: inline-block;
 	float: right
 }
-
+#map-canvas img {
+  max-width: none;
+}
 </style>
 
 <script
@@ -172,54 +174,36 @@ li a:hover {
 
 </head>
 <body>
-	
 
 	<div class="container-fluid">
 		<div class="row-fluid">
-		<div class="span6">
-		<form name="new_journey_form" id="new_journey_form"
+			<div class="span12" align="center">
+				<form name="new_journey_form" id="new_journey_form"
 		action="/journey/new" method="POST" enctype="multipart/form-data"
-		class="form-horizontal">
-		<legend>Enter Journey Details</legend>
-		<div class="control-group">
-			<label class="control-label" for="inputEmail">Name :</label>
-			<div class="controls">
-				<input type="text" name="name" id="inputname" placeholder="Name">
-			</div>
-		</div>
-		<div class="control-group">
-			<label class="control-label" for="inputEmail">Description :</label>
-			<div class="controls">
-				<input type="text" name="description" id="inputdescription"
-					placeholder="Description">
-			</div>
-		</div>
-		<div class="control-group">
-			<label class="control-label" for="inputEmail">Image :</label>
-			<div class="controls">
-				<input type="file" name="image" id="inputimage" placeholder="Image">
-			</div>
-		</div>
-		<div class="control-group">
-			<div class="controls">
-				<!--			<input type="submit" value="Submit">  -->
-				<button type="submit" value="Submit" class="btn btn-primary">Add
-					Journey</button>
-			</div>
-		</div>
+		class="well form-inline">
+					<input type="text" class="input-large" name ="name"
+						placeholder="What's your Adventure called ?"> <input
+						type="text" class="input-large" name="description"
+						placeholder="Describe your Experience..."> <input
+						type="file" title="Search for a file to add"  name="image">
 
-	</form>
+					<button type="submit" class="btn btn-primary">Add Journey</button>
+				</form>
+			</div>
 		</div>
-			<div class="span6" style="overflow: auto;">
+		<div class="row-fluid">
+			<div class="span3" style="overflow: auto;">
 				<div class="optdiv">
 					<ul id="list">
-						
 					</ul>
-
 				</div>
+			</div>
+			<div class="span9">
+				<div id="map-canvas" style="height:500px; width: auto;"></div>
+				<p id="error"></p>
 			</div>
 		</div>
 	</div>
-	<div id="map-canvas"></div>
-				<p id="error"></p>
+	
+	</body>			
 </html>

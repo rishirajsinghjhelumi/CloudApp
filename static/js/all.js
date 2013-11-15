@@ -277,6 +277,8 @@ var getAllJourneys = function(){
 		async: false,
 	}).done(function(data) {
 		
+		$('#list').empty();
+		
 		var journeys = data['journeys'];
 		for(var i=0;i<journeys.length;i++){
 			
@@ -455,6 +457,7 @@ $(document).ready(function() {
 	$("#new_journey_form").submit(function(e){
 		e.preventDefault();
 		newJourney();
+		$("#new_journey_form")[0].reset();
 	});
 	
 	getAllJourneys();

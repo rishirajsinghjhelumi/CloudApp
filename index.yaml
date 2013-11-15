@@ -6,6 +6,12 @@
 
 indexes:
 
+- kind: Journey
+  properties:
+  - name: user_id
+  - name: time
+    direction: desc
+
 # - kind: Cat
 #   ancestor: no
 #   properties:
