@@ -118,7 +118,7 @@ var JourneyMap = function(journeyId,markers){
 		//Server Calls
 		var milestoneId = null;
 		if(milestone == null){
-			milestoneId = createNewMilestone(this.journeyId,markerLatLngObj.nb,markerLatLngObj.ob,markerLocation);
+			milestoneId = createNewMilestone(this.journeyId,markerLatLngObj.lat(),markerLatLngObj.lng(),markerLocation);
 			this.markers.push(getMilestoneInfo(milestoneId));
 			milestone = this.markers[this.markers.length - 1];
 		}
