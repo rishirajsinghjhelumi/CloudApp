@@ -81,7 +81,8 @@ class ProfileHandler(BaseRequestHandler):
     if self.logged_in:
       self.response.write({
         'user': self.current_user, 
-        'session': self.auth.get_user_by_session()
+        'session': self.auth.get_user_by_session(),
+        'auth_info': self.session.get('user_auth_info')
       })
     else:
       self.redirect('/')
@@ -187,6 +188,7 @@ class AuthHandler(BaseRequestHandler, SimpleAuthHandler):
 
     # Remember auth data during redirect, just for this demo. You wouldn't
     # normally do this.
+    self.session['user_auth_info'] = auth_info
     self.session.add_flash(data, 'data - from _on_signin(...)')
     self.session.add_flash(auth_info, 'auth_info - from _on_signin(...)')
 
