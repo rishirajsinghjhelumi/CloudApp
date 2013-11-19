@@ -4,7 +4,7 @@
 # Get 'a random and long string' from here: 
 # http://clsc.net/tools/random-string-generator.php
 # or execute this from a python shell: import os; os.urandom(64)
-SESSION_KEY = "a very long and secret session key goes here"
+SESSION_KEY = "ThIsIsVerySTUpId"
 
 # Google APIs
 GOOGLE_APP_ID = '211096637650-9bjjsv0npb491ugtg93trno3hmmu8pof.apps.googleusercontent.com'
@@ -29,8 +29,8 @@ WL_CLIENT_ID = 'client id'
 WL_CLIENT_SECRET = 'client secret'
 
 # https://dev.twitter.com/apps
-TWITTER_CONSUMER_KEY = 'oauth1.0a consumer key'
-TWITTER_CONSUMER_SECRET = 'oauth1.0a consumer secret'
+TWITTER_CONSUMER_KEY = 'BgoCJvEe2zEyUTKyzKA'
+TWITTER_CONSUMER_SECRET = 'Up7nZXYcyk1cb48HP5dgqrEcffDSz2wTvA39OurS5Q'
 
 # https://foursquare.com/developers/apps
 FOURSQUARE_CLIENT_ID = 'client id'

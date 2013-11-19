@@ -1,3 +1,7 @@
 *.pyc
 
 npm-debug.log
+
+.project
+.pydevproject
+.settings

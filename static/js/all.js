@@ -87,12 +87,12 @@ var JourneyMap = function(journeyId,markers){
 		});
 
 	}
-	
+
 	this.displayImages = function(milestone){
-		
+
 		var photobooth = document.getElementById('photobooth');
 		$("#photobooth").empty();
-		
+
 		var div = document.createElement('div');
 //		div.className = "forscroll";
 		var content = '<ul class="thumbnails enlarge span4">';
@@ -104,11 +104,11 @@ var JourneyMap = function(journeyId,markers){
 		content += '</ul>';
 		div.innerHTML = content;
 		photobooth.appendChild(div);
-		
+
 	}
 
 	this.addMarker = function(markerLocation,markerLatLngObj,currentPathLength,milestone){
-		
+
 		var marker = new google.maps.Marker({
 			position: markerLatLngObj,
 			title: '#' + currentPathLength + "::" + markerLocation,
@@ -130,11 +130,11 @@ var JourneyMap = function(journeyId,markers){
 			mouseX = e.pageX; 
 			mouseY = e.pageY;
 		}
-		
+
 		var self = this;
 
 		google.maps.event.addListener(marker, "click", function() {
-			
+
 			var formName = "new_milestone_attachment_form" + "__" + milestoneId;
 			var message = '<form id="' + formName + 
 			'" action="/attachment/new" method="POST" enctype="multipart/form-data">' +
@@ -160,9 +160,9 @@ var JourneyMap = function(journeyId,markers){
 				content: message
 			});
 			infoWindow.open(this.map, marker);
-			
+
 			google.maps.event.addListener(infoWindow, 'domready', function(){
-				
+
 				$("#" + formName).submit(function(e){
 					e.preventDefault();
 					var attachmentId = createAttachment(milestoneId);
@@ -170,13 +170,13 @@ var JourneyMap = function(journeyId,markers){
 					$('#' + formName)[0].reset();
 					self.displayImages(milestone);
 				});
-				
-		     });
-			
+
+			});
+
 			self.displayImages(milestone);
 
 		});
-		
+
 		self = this;
 
 		google.maps.event.addListener(marker, 'mouseover', function() {
@@ -190,7 +190,7 @@ var JourneyMap = function(journeyId,markers){
 		google.maps.event.addListener(marker, "dblclick", function() {
 			self.deleteMarker(marker,milestoneId);
 		});
-		
+
 		this.googleMarkers.push(marker);
 
 		this.map.panTo(markerLatLngObj);
@@ -252,6 +252,15 @@ var newJourney = function(){
 		$('body').append('<div id="photobooth"></div>');
 		TTB.Map = new JourneyMap(data['journey_id'],[]);
 		TTB.Map.init();
+		
+		var getUrl = "/journey/get/" + data['journey_id'];;
+		
+		$.ajax({
+			url: getUrl,
+			type: 'GET',
+		}).done(function(data) {
+			journeyListElement(data['journey']);
+		},"json");
 	},"json");
 }
 
@@ -267,6 +276,38 @@ var deleteJourney = function(journeyId){
 	},"json");
 }
 
+var journeyListElement = function(journey){
+
+	var id = "list__" + journey['journey_id'];
+	var linkId = id + "__remove";
+	var listElement = '<li id="'+ id +
+	'"><img style="height:100px; width:100px;" src="/image/' + journey['image'] +'"> ' +
+	'<div><div class="lefty">' + 
+	'<h3>' + journey['name'] + '</h3>' + 
+	'</div>' + 
+	'<div class="righty">' + 
+	'<a href="#" class="remove" data-toggle="tooltip" id="' + linkId + '" ' +
+	'title="Delete this Journey" data-placement="bottom">&times;</a>' +
+	'</div></div>' + 
+	'<p>' + journey['description'] + '</p></li>';
+
+	$('#list').append(listElement);
+
+	$('#' + linkId ).click(function() {
+		var id = $(this).attr('id');
+		id = id.split("__remove")[0];
+		$('#' + id).remove();
+		id = id.split("list__")[1];
+		deleteJourney(id);
+	});
+
+	$('#' + id ).click(function() {
+		var id = $(this).attr('id');
+		var journeyId = id.split("list__")[1];
+		loadJourney(journeyId);
+	});
+}
+
 var getAllJourneys = function(){
 
 	var url = "/journey/getall";
@@ -276,43 +317,14 @@ var getAllJourneys = function(){
 		type: 'GET',
 		async: false,
 	}).done(function(data) {
-		
+
 		$('#list').empty();
-		
+
 		var journeys = data['journeys'];
 		for(var i=0;i<journeys.length;i++){
-			
-			var id = "list__" + journeys[i]['journey_id'];
-			var linkId = id + "__remove";
-			var listElement = '<li id="'+ id +
-			'"><img style="height:100px; width:100px;" src="/image/' + journeys[i]['image'] +'"> ' +
-			'<div><div class="lefty">' + 
-			'<h3>' + journeys[i]['name'] + '</h3>' + 
-			'</div>' + 
-			'<div class="righty">' + 
-			'<a href="#" class="remove" data-toggle="tooltip" id="' + linkId + '" ' +
-			'title="Delete this Journey" data-placement="bottom">&times;</a>' +
-			'</div></div>' + 
-			'<p>' + journeys[i]['description'] + '</p></li>';
-			
-			$('#list').append(listElement);
-			
-			$('#' + linkId ).click(function() {
-				  var id = $(this).attr('id');
-				  id = id.split("__remove")[0];
-				  $('#' + id).remove();
-				  id = id.split("list__")[1];
-				  deleteJourney(id);
-			});
-			
-			$('#' + id ).click(function() {
-				var id = $(this).attr('id');
-				var journeyId = id.split("list__")[1];
-				loadJourney(journeyId);
-			});
-			
+			journeyListElement(journeys[i]);
 		}
-		
+
 	},"json");
 
 }
@@ -387,11 +399,11 @@ var createAttachment = function(milestoneId){
 
 	var journeyForm = $("#new_milestone_attachment_form" + "__" + milestoneId);
 	var formData = new FormData(journeyForm[0]);
-	
+
 	formData.append("milestone_id", milestoneId);
-	
+
 	var attachmentId = null;
-	
+
 	console.log(formData);
 	$.ajax({
 		url: url,
@@ -404,7 +416,7 @@ var createAttachment = function(milestoneId){
 	}).done(function(data) {
 		attachmentId = data['attachment_id'];
 	},"json");
-	
+
 	return attachmentId;
 }
 
@@ -425,7 +437,7 @@ var getAttachment = function(attachmentId){
 
 	var url = "/attachment/get/" + attachmentId;
 	var attachmentInfo = null;
-	
+
 	$.ajax({
 		url: url,
 		async:false,
@@ -433,7 +445,7 @@ var getAttachment = function(attachmentId){
 	}).done(function(data) {
 		attachmentInfo = data['attachment'];
 	},"json");
-	
+
 	return attachmentInfo;
 
 }
@@ -459,7 +471,7 @@ $(document).ready(function() {
 		newJourney();
 		$("#new_journey_form")[0].reset();
 	});
-	
+
 	getAllJourneys();
 
 });
