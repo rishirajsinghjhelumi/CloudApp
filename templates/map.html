@@ -6,11 +6,13 @@
 <meta charset="utf-8">
 <title>The Traveler Book</title>
 <link rel="stylesheet" href="/css/bootstrap.min.css" />
+<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=2">
 <style>
-html,body,#map-canvas {
-	height: 100%;
-	margin: 10px;
-	padding: 10px;
+html, body, #map-canvas {
+height: 100%;
+width: 100%;
+margin: 0px;
+padding-top: 15px;
 }
 
 #infoWindow {
@@ -208,6 +210,17 @@ li a:hover {
   -webkit-border-radius: 100px;
 }
 
+.container-fluid {
+padding-right: 0px;
+padding-left: 0px;
+}
+
+#fileElem {
+  visibility: hidden;
+  width: 0;
+  height: 0;
+}
+
 </style>
 
 <script
@@ -218,6 +231,13 @@ li a:hover {
 
 </head>
 <body>
+<script type="text/javascript">
+function choose()
+{
+   document.getElementById("browse-button").click();
+}
+</script>
+
 
 	<div class="container-fluid">
 		<div class="row-fluid">
@@ -230,10 +250,9 @@ li a:hover {
 						type="text" class="input-large" name="description"
 						placeholder="Describe your Experience...">
 						
-						 <span class="file-input-wrapper">
-  							<button class="btn">Insert Image</button>
-  							<input type="file" name="image" />
-						</span>
+						<input type="file" name="image" id="fileElem"/>
+						<button id="fileSelect" class="btn">Select Image</button>
+
 
 					<button type="submit" class="btn btn-primary">Add Journey</button>
 				</form>
@@ -253,5 +272,11 @@ li a:hover {
 		</div>
 	</div>
 	
-	</body>			
+	</body>	
+	<script>
+document.querySelector('#fileSelect').addEventListener('click', function(e) {
+  e.preventDefault();
+  document.querySelector('#fileElem').click();
+}, false);
+</script>		
 </html>

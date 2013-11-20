@@ -1,0 +1,19 @@
+Google ::
+thetravelerbook.appspot.com ::
+	GOOGLE_APP_ID = '211096637650-9bjjsv0npb491ugtg93trno3hmmu8pof.apps.googleusercontent.com'
+	GOOGLE_APP_SECRET = 'P378SE-kI5qblDb4dAVsOFlk'
+	GOOGLE_APP_KEY = 'AIzaSyBoJsQ8A7od6F-9dFROYGWZRwS8Hex0VmY'
+	
+	GOOGLE_APP_ID = '211096637650-lpvumq2suu8426mj3vdudcghefdb8gu6.apps.googleusercontent.com'
+	GOOGLE_APP_SECRET = 'e76rya2b8LvoBQZRzqxO0aes'
+	
+gcdc2013-thetravelerbook.appspot.com ::
+	917229131041.apps.googleusercontent.com
+	GkXXpEmS6sSkCR_6vhQU0nRK
+	AIzaSyDq-bipoNZFVxhK3xKWXgtbXGZP0ovWXmI
+	AIzaSyA9CZAE9la2FqEQqUCIB9JqojrNFO0lLtw
+	
+	
+Facebook ::
+	App ID:	536756159749180
+	App Secret:	c44d187fd1e805165968322e8f83cb82

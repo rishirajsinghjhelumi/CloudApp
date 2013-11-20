@@ -150,7 +150,7 @@ class AuthHandler(BaseRequestHandler, SimpleAuthHandler):
     
     user = self.auth.store.user_model.get_by_auth_id(auth_id)
     _attrs = self._to_user_model_attrs(data, self.USER_ATTRS[provider])
-
+    
     if user:
       logging.info('Found existing user to log in')
       # Existing users might've changed their profile data so we update our
