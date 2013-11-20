@@ -21,8 +21,10 @@ paths = [
             Route('/', handler = 'handlers.LandingPage'),
             Route('/about', handler = 'handlers.AboutPage'),
             Route('/team', handler = 'handlers.TeamPage'),
+            Route('/help', handler = 'handlers.HelpPage'),
+            Route('/technology', handler = 'handlers.TechnologyPage'),
             
-            
+            Route('/user/getAccessToken',handler = 'handlers.GetAccessToken'),
             Route('/logout', handler='auth_handlers.AuthHandler:logout', name='logout'),
             Route('/auth/<provider>', handler='auth_handlers.AuthHandler:_simple_auth', name='auth_login'),
             Route('/auth/<provider>/callback', handler='auth_handlers.AuthHandler:_auth_callback', name='auth_callback'),
@@ -44,6 +46,8 @@ paths = [
             Route('/attachment/new', handler='milestone.handlers.MilestoneAttachmentAdd', name='addAttachment'),
             Route('/attachment/delete/<attachment_id>', handler='milestone.handlers.MilestoneAttachmentDelete', name='deleteAttachment'),
             Route('/attachment/get/<attachment_id>', handler='milestone.handlers.MilestoneAttachmentGet', name='getAttachment'),
+            
+            Route('/blog/profile',handler = 'handlers.BlogPage'),
             
         ]
 

@@ -8,3 +8,4 @@ class Blog(db.Model):
     
     user_id = db.StringProperty(required=True)
     journey_id = db.StringProperty(required=True)
+    user_name  = db.StringProperty(required=True)
