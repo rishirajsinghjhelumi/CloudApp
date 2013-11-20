@@ -92,9 +92,9 @@ var JourneyMap = function(journeyId,markers){
 
 		var photobooth = document.getElementById('photobooth');
 		$("#photobooth").empty();
+		$("#photobooth").css("overflow","scroll");
 
 		var div = document.createElement('div');
-//		div.className = "forscroll";
 		var content = '<ul class="thumbnails enlarge span4">';
 		for(var i=0;i<milestone['attachments'].length;i++){
 			content += '<li>';
@@ -115,7 +115,6 @@ var JourneyMap = function(journeyId,markers){
 			map: this.map
 		});
 
-		//Server Calls
 		var milestoneId = null;
 		if(milestone == null){
 			milestoneId = createNewMilestone(this.journeyId,markerLatLngObj.lat(),markerLatLngObj.lng(),markerLocation);
@@ -138,18 +137,11 @@ var JourneyMap = function(journeyId,markers){
 			var formName = "new_milestone_attachment_form" + "__" + milestoneId;
 			var message = '<form id="' + formName + 
 			'" action="/attachment/new" method="POST" enctype="multipart/form-data">' +
-			'<div class="control-group">' +
-			'<label class="control-label" for="inputEmail">Image :</label>' +
-			'<div class="controls">' +
-			'<input type="file" name="image" accept="image/*">' + 
-			'</div></div>' +
-
-			'<div class="control-group">' +
-			'<label class="control-label" for="inputDesc">Description :</label>' +
-			'<div class="controls">' +
+			'<input type="file" name="image" id="fileElem" />' +
+			'<button id="fileSelect" class="btn">Select Image</button>' +
+			'<label class="control-label" for="inputDesc">Write a Story :</label>' +
 			'<textarea cols="1000" name="description">' + 
 			'</textarea>' +
-			'</div></div>' +
 
 			'<div class="control-group">' +
 			'<div class="controls">' +
@@ -169,6 +161,11 @@ var JourneyMap = function(journeyId,markers){
 					milestone['attachments'].push(getAttachment(attachmentId));
 					$('#' + formName)[0].reset();
 					self.displayImages(milestone);
+				});
+				
+				$("#" + formName + " #fileSelect").click(function(e){
+					e.preventDefault();
+					$("#" + formName + ' #fileElem').click();
 				});
 
 			});
@@ -211,7 +208,6 @@ var JourneyMap = function(journeyId,markers){
 				break;
 			}
 		}
-		console.log(this.markers);
 
 		this.poly.setMap(null);
 		marker.setMap(null);
@@ -226,7 +222,6 @@ var JourneyMap = function(journeyId,markers){
 		this.drawMap();
 		this.poly.setMap(this.map);
 
-		//Server Calls
 		deleteMilestone(milestoneId);
 
 	}

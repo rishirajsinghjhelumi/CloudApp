@@ -237,13 +237,6 @@ li a:hover {
 
 </head>
 <body>
-	<script type="text/javascript">
-function choose()
-{
-   document.getElementById("browse-button").click();
-}
-</script>
-
 
 	<div class="container-fluid">
 		<div class="row-fluid">
@@ -252,12 +245,12 @@ function choose()
 					action="/journey/new" method="POST" enctype="multipart/form-data"
 					class="well form-inline">
 					<input type="text" class="input-large" name="name"
-						placeholder="What's your Adventure called ?"> <input
-						type="text" class="input-large" name="description"
-						placeholder="Describe your Experience..."> <input
-						type="file" name="image" id="fileElem" />
-					<button id="fileSelect" class="btn">Select Image</button>
-
+						placeholder="What's your Adventure called ?" /> <input type="text"
+						class="input-large" name="description"
+						placeholder="Describe your Experience..." /> 
+						
+						<input type="file" name="image" id="fileElem" />
+						<button id="fileSelect" class="btn">Select Image</button>
 
 					<button type="submit" class="btn btn-primary">Add Journey</button>
 				</form>
