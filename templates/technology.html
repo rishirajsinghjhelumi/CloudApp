@@ -27,6 +27,20 @@ html,body {
 	display: inline;
 	list-style-type: none;
 }
+
+@font-face {
+	font-family: customLine;
+	src: url('/css/look-up.ttf');
+}
+
+.fontface2 {
+	font-family: customLine;
+	font-size: 200px;
+	padding-bottom: 2%;
+	
+}
+
+
 </style>
 
 <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
@@ -39,14 +53,14 @@ html,body {
 <body>
 {% include "apps.html" %}
 	<div id="wrap">
-		<div class="container">
-			<h3>Technologies And API's Used</h3>
+		<div class="container fontface2" >
+			<h3 style="	text-align:justify; padding-top: 15px; padding-left: 15px; font-size:80px !important">Technologies And APIs</h3>
 			<div
 				style="background-color: #FBFBEF; background-size: cover; height: 50px; border-radius: 6px;"
 				class="page-header">
-				<p class="lead"
-					style="padding-top: 15px; padding-left: 15px; font-family: arial;">
-					We've used the following Google Technologies</p>
+				<p class="lead fontface3"
+					style="padding-top: 15px; padding-left: 15px; font-size:80px">
+					Major Google and other Technologies used</p>
 			</div>
 			<div class="row">
 				<div class="span4">
@@ -89,7 +103,28 @@ html,body {
 							style="width: 260px; height: 200px;">
 					</div>
 				</div>
+				
+				
+				
+				
+				
+				
 
+			</div>
+			<hr>
+			<div class="row">
+			<div class="span4">
+			</div>
+			<div class="span4">
+				<div class="thumbnail">
+					<img src="/img/tech/OAuth2.png"
+							style="width: 260px; height: 200px;">
+				</div>
+			</div>
+			<div class="span4">
+			</div>
+			
+			
 			</div>
 
 		</div>
@@ -98,7 +133,7 @@ html,body {
 	</div>
 
 
-	<div id="footer">
+	<div id="footer" style="padding-top:5%" >
 		<div class="container">
 			<p class="muted credit"></p>
 			<span style="float: right;"> <a href="/">TravelerBook</a>&nbsp;&nbsp;
