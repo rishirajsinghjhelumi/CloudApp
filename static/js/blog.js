@@ -89,7 +89,7 @@ var newBlogDetails = function(journeyId){
 			
 			for(j=0;j<milestone['attachments'].length;j++){
 				
-				var attachment = milestone['attachments'][i];
+				var attachment = milestone['attachments'][j];
 				var attachmentContent = '';
 				attachmentContent += '<p>' + attachment['description'] + '</p>';
 				attachmentContent += '<img src = "' + this.getImageSource(attachment['image']) + '" />';
