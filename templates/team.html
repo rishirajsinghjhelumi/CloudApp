@@ -9,7 +9,7 @@
 <title>Team TravelerBook</title>
 <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=2">
 <link href="/css/bootstrap.min.css" rel="stylesheet">
-<link href="css/bootstrap-responsive.min.css" rel="stylesheet">
+<link href="/css/bootstrap-responsive.min.css" rel="stylesheet">
 <link href="/css/heroic-features.css" rel="stylesheet">
 <link rel="stylesheet" href="/css/index.css" />
 <style>
@@ -53,8 +53,6 @@ html,body {
 	
 }
 </style>
-
-
 
 </head>
 
@@ -122,16 +120,7 @@ html,body {
 		<!-- /.container -->
 	</div>
 
-	<div id="footer">
-		<div class="container">
-			<p class="muted credit"></p>
-			<span style="float: right;"> <a href="/">TravelerBook</a>&nbsp;&nbsp;
-				<a href="/about">About Us</a>&nbsp;&nbsp; <a href="/team">Team</a>&nbsp;&nbsp;
-				<a href="/technology">Technology</a>&nbsp;&nbsp;
-				<a href="/help">Help</a>&nbsp;&nbsp;
-			</span> &copy; The Traveler Book 2013
-		</div>
-	</div>
+	{% include "footer.html" %}
 
 </body>
 <script src="/js/jquery-1.10.2.min.js"></script>

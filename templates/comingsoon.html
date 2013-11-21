@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<title>About Us</title>
+<title>Coming Soon</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="description" content="">
 <meta name="author" content="">
@@ -10,7 +10,9 @@
 <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=2">
 <link href="/css/bootstrap.min.css" rel="stylesheet">
 <link href="/css/bootstrap-responsive.min.css" rel="stylesheet">
+<link href="/css/heroic-features.css" rel="stylesheet">
 <link rel="stylesheet" href="/css/index.css" />
+
 <style type="text/css">
 .container>hr {
 	margin: 15px 0;
@@ -18,7 +20,7 @@
 
 html,body {
 	height: 100%;
-	background: url('/img/boathouse.jpg') no-repeat center center fixed;
+	background: url('/img/roadahead.jpg') no-repeat center center fixed;
 	-webkit-background-size: cover;
 	-moz-background-size: cover;
 	-o-background-size: cover;
@@ -43,7 +45,14 @@ html,body {
 .fontface2 {
 	font-family: quigley;
 	font-size: 32px;
-	padding-top: 10%;
+}
+
+.marketing {
+	margin: 60px 0;
+}
+
+.marketing p+h4 {
+	margin-top: 28px;
 }
 </style>
 
@@ -55,29 +64,33 @@ html,body {
 </head>
 
 <body>
-	{% include "apps.html" %}
+{% include "apps.html" %}
 	<div id="wrap">
 		<div class="container" style="padding-top: 15px;">
-			<p class="lead fontface2">The Traveler Book's Mission is to
-				enable people to completely relive a journey and flaunt it the way
-				they want to</p>
-			<hr />
+			<p class="lead fontface2" style="font-size: 50px;">The Road
+				Ahead...</p>
 
-			<p class="fontface1" >We believe it is the experience and not just
-				the pictures that define an adventure. Click and upload your photos
-				on the go, when you're in the moment, willing to capture the perfect
-				shot and excited to write about it.</p>
+			<div style="max-width: 50%;">
+				<h4 class="fontface1">Upload Videos</h4>
+				<p>
+					Soon you can upload videos on <strong>youtube</strong> which will
+					later be included in the blog post
+				</p>
+				<h4 class="fontface1">Create Wishlists</h4>
+				<p>
+					Maintaining Wishlists, which can help plan a journey and schedule
+					it by integrating with <strong>Google Calendar</strong>
+				</p>
+				<h4 class="fontface1">Mobile App</h4>
+				<p>
+					Rolling out the application for <strong>Android, iOS and
+						Blackberry</strong>
+				</p>
 
-			<p class="fontface1">The Traveler Book allows you not only to map
-				your entire journey but also post a beautiful blog when the trip
-				ends and share it on Social Media. Never forget the story behind
-				that shot or sigh when you forget the location of that mind-blowing
-				view on the highway. We want you to relive all those awesome moments
-				that were tucked away in some corner by organizing them
-				incrementally.</p>
-
+			</div>
 			<div id="push"></div>
 		</div>
+
 
 	</div>
 	<!-- /container -->
@@ -85,3 +98,4 @@ html,body {
 
 </body>
 </html>
+

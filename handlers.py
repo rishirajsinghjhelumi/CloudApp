@@ -33,6 +33,11 @@ class BlogPage(BaseRequestHandler):
 
     def get(self):
         self.render('blog.html')
+        
+class ComingSoonPage(BaseRequestHandler):
+
+    def get(self):
+        self.render('comingsoon.html')
 
 class GetAccessToken(BaseRequestHandler):
     def get(self):
