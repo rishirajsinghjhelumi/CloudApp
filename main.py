@@ -32,13 +32,11 @@ paths = [
             
             Route('/image/<image_id>', handler='image_handler.GetImage', name='getImage'),
             
-            Route('/journey/try', handler='journey.handlers.Try', name='Try'),
             Route('/journey/new', handler='journey.handlers.JourneyNew', name='newJourney'),
             Route('/journey/delete/<journey_id>', handler='journey.handlers.JourneyDelete', name='deleteJourney'),
             Route('/journey/get/<journey_id>', handler='journey.handlers.JourneyGet', name='getJourney'),
             Route('/journey/getall', handler='journey.handlers.JourneyGetAll', name='getAllJourney'),
             
-            Route('/milestone/try', handler='milestone.handlers.Try', name='Try'),
             Route('/milestone/new', handler='milestone.handlers.MilestoneNew', name='newMilestone'),
             Route('/milestone/delete/<milestone_id>', handler='milestone.handlers.MilestoneDelete', name='deleteMilestone'),
             Route('/milestone/get/<milestone_id>', handler='milestone.handlers.MilestoneGet', name='getMilestone'),
