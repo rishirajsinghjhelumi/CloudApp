@@ -17,6 +17,7 @@ class BlogNew(BaseRequestHandler):
         newBlog.blog_id = self.request.get('blog_id')
         newBlog.blog_link = self.request.get('blog_link')
         newBlog.blog_url = self.request.get('blog_url')
+        newBlog.blog_content = self.request.get('blog_content')
         newBlog.post_time = getTimeEpoch()
         
         newBlog.put()
