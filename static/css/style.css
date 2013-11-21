@@ -1,0 +1,78 @@
+/*
+Author: Divya Ranjan
+Version: 1.0
+*/
+@import url('/css/bootstrap.min.css');
+
+@import url('/css/bootstrap-responsive.min.css');
+
+@import url('/css/flexslider.css');
+
+@font-face {
+	font-family: 'Open Sans Semibold';
+	src: url('/css/OpenSans-Semibold.ttf') format('truetype');
+}
+
+/*Styling starts*/
+body {
+	background: url('/img/bg.png') no-repeat center center fixed;
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+}
+
+.container .logo,.box-intro,.box-holder,.footer-home {
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.box-holder {
+	width: 30%;
+}
+
+.box-intro {
+	width: 65%;
+	padding: 10px;
+	background: #2f2f2f;
+	color: #ffffff;
+	margin-bottom: 10px;
+	font-size: 120%;
+	font-family: 'Open Sans Semibold';
+	-webkit-border-radius: 2px;
+	-moz-border-radius: 2px;
+	border-radius: 2px;
+}
+
+.box-intro:nth-child(even) {
+	float: right;
+}
+
+.box-intro:nth-child(odd) {
+	float: left;
+}
+
+.footer-home {
+	width: 45%;
+}
+
+.footer-home ul a {
+	color: #ffffff;
+	text-decoration: none;
+}
+
+.footer-home li {
+	list-style: none;
+	display: inline-block;
+	margin-left: 1%;
+	font-weight: bold;
+}
+
+.container .top-space {
+	margin-top: 5%;
+}
+
+.space {
+	height: 20px;
+}

@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>The Traveler Book</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="">
+<meta name="author" content="">
+
+<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=2">
+<link href="/css/bootstrap.min.css" rel="stylesheet">
+<link href="/css/bootstrap-responsive.min.css" rel="stylesheet">
+<link rel="stylesheet" href="/css/index.css" />
+<style type="text/css">
+@font-face {
+	font-family: customfont;
+	src: url('/css/TravelingTypewriter.ttf');
+}
+
+body {
+	padding-top: 35px;
+	padding-bottom: 20px;
+	height: 100%;
+}
+
+.fontface {
+	font-family: customfont;
+	font-size: 60px;
+}
+
+.container {
+	
+}
+
+.container>hr {
+	margin: 20px 0;
+}
+
+.textbottom {
+	vertical-align: text-bottom;
+}
+
+.lefty {
+	display: inline-block
+}
+
+.righty {
+	display: inline-block;
+	float: right
+}
+
+.carousel .item {
+	height: 500px;
+}
+
+.carousel img {
+	position: absolute;
+	top: 0;
+	left: 0;
+	min-width: 100%;
+	height: 500px;
+}
+
+</style>
+
+<!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+<!--[if lt IE 9]>
+		<script src="../assets/js/html5shiv.js"></script>
+		<![endif]-->
+
+</head>
+
+<body>
+{% include "apps.html" %}
+	<div id="wrap">
+		<div class="container">
+			<div>
+				<div class="lefty">
+					<h1 class="fontface">The Traveler Book</h1>
+				</div>
+				<div class="righty">
+					<a style="float: right" href="/auth/google"><img
+						src="/img/btn_red.png" class="textbottom"></a>
+
+				</div>
+
+			</div>
+			<hr style='margin-top: 0.5em' />
+
+			<div class="carousel slide" id="carousel-id">
+				<div class="carousel-inner">
+					<div class="item active">
+						<img src="/img/slide-01.jpg" alt="Antennae Galaxies" />
+						<div class="carousel-caption">
+							<p>Maybe its better to create your own Moment...</p>
+						</div>
+					</div>
+					<div class="item">
+						<img src="/img/trek.jpg" alt="Carina Caterpillar" />
+						<div class="carousel-caption">
+							<p>Don't Look Back, You're not going that WAY...</p>
+						</div>
+					</div>
+					<div class="item">
+						<img src="/img/kayak.jpg" alt="Light Echo" />
+						<div class="carousel-caption">
+							<p>Show me, Don't tell me !!</p>
+						</div>
+					</div>
+					<div class="item">
+						<img src="/img/food.jpg" alt="Light Echo" />
+						<div class="carousel-caption">
+							<p>Fell in Love with the local Cuisine? Tell you friends
+								about it</p>
+						</div>
+					</div>
+					<div class="item">
+						<img src="/img/scene1.jpg" alt="Light Echo" />
+						<div class="carousel-caption">
+							<p>Share the biggest catch of your life...</p>
+						</div>
+					</div>
+					<div class="item">
+						<img src="/img/motorbike.jpg" alt="Light Echo" />
+						<div class="carousel-caption">
+							<p>Make a point, for all those who WANDER are not LOST</p>
+						</div>
+					</div>
+				</div>
+				<a class="carousel-control left" href="#carousel-id"
+					data-slide="prev">&lsaquo;</a> <a class="carousel-control right"
+					href="#carousel-id" data-slide="next">&rsaquo;</a>
+			</div>
+			<hr>
+
+			<div id="push"></div>
+		</div>
+	</div>
+
+
+	<div id="footer">
+		<div class="container">
+			<p class="muted credit"></p>
+			<span style="float: right;"> <a href="/">TravelerBook</a>&nbsp;&nbsp;
+				<a href="/about">About Us</a>&nbsp;&nbsp; <a href="/team">Team</a>&nbsp;&nbsp;
+				<a href="/technology">Technology</a>&nbsp;&nbsp;
+				<a href="/help">Help</a>&nbsp;&nbsp;
+			</span> &copy; The Traveler Book 2013
+		</div>
+	</div>
+
+</body>
+<script src="/js/jquery-1.10.2.min.js"></script>
+<script src="/js/carousel.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+<script>
+	$(document).ready(function() {
+		$('.carousel').carousel({
+			interval : 3000
+		});
+	});
+</script>
+</html>
+
