@@ -2,13 +2,13 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<title>About Us</title>
+<title>About</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="description" content="">
 <meta name="author" content="">
 
 <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=2">
-<link href="/css/bootstrap.min.css" rel="stylesheet">
+<link href="/css/bootstrap3.css" rel="stylesheet">
 <link href="/css/bootstrap-responsive.min.css" rel="stylesheet">
 <link rel="stylesheet" href="/css/index.css" />
 <style type="text/css">
@@ -33,6 +33,7 @@ html,body {
 .fontface1 {
 	font-family: gabrielle;
 	font-size: 25px;
+	font-weight: bold;
 }
 
 @font-face {
@@ -43,8 +44,8 @@ html,body {
 .fontface2 {
 	font-family: quigley;
 	font-size: 32px;
-	padding-top: 10%;
 }
+
 </style>
 
 <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
@@ -55,27 +56,37 @@ html,body {
 </head>
 
 <body>
-	{% include "apps.html" %}
+{% include "apps.html" %}
 	<div id="wrap">
-		<div class="container" style="padding-top: 15px;">
+		<div class="container" style="padding-top: 10px;">
+			<!--				<div style="background: url(fishing.jpg) #000 top center no-repeat; background-size: cover;height:300px;" class="page-header">
+
+				</div>-->
 			<p class="lead fontface2">The Traveler Book's Mission is to
 				enable people to completely relive a journey and flaunt it the way
 				they want to</p>
 			<hr />
+			<div style="max-width: 20%; float: left;">
+				<p class="fontface1" style="font-size: 49px; font-weight: normal;">"The journey not
+					the arrival matters."</p>
+				<div class="fontface2" style="font-size: 35px; float: right;">-
+					T.S Eliot</div>
+			</div>
+			<div style="max-width: 75%; float: right;">
+				<p class="fontface1">We believe it is the experience and not
+					just the pictures that define an adventure. Click and upload your
+					photos on the go, when you're in the moment, willing to capture the
+					perfect shot and excited to write about it.</p>
 
-			<p class="fontface1" >We believe it is the experience and not just
-				the pictures that define an adventure. Click and upload your photos
-				on the go, when you're in the moment, willing to capture the perfect
-				shot and excited to write about it.</p>
+				<p class="fontface1">The Traveler Book allows you not only to
+					map your entire journey but also post a beautiful blog when the
+					trip ends and share it on Social Media. Never forget the story
+					behind that shot or sigh when you forget the location of that
+					mind-blowing view on the highway. We want you to relive all those
+					awesome moments that were tucked away in some corner by organizing
+					them incrementally.</p>
 
-			<p class="fontface1">The Traveler Book allows you not only to map
-				your entire journey but also post a beautiful blog when the trip
-				ends and share it on Social Media. Never forget the story behind
-				that shot or sigh when you forget the location of that mind-blowing
-				view on the highway. We want you to relive all those awesome moments
-				that were tucked away in some corner by organizing them
-				incrementally.</p>
-
+			</div>
 			<div id="push"></div>
 		</div>
 
