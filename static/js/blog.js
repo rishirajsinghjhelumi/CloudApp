@@ -56,29 +56,52 @@ var newBlogDetails = function(journeyId){
 		
 	}
 	
+	this.getDate = function(epochTime){
+		
+		var date = new Date(epochTime * 1000);
+		return date.toDateString();
+	}
+	
 	this.getGeneratedBlog = function(blogId){
 		
 		var blog = {};
 		blog['kind'] = "blogger#post";
 		blog['blog'] = {};
 		blog['blog']['id'] = blogId;
-		blog['title'] = this.journeyDetails["name"];
+		blog['title'] = this.journeyDetails['name'];
 		
 		var content = "";
 		
 		content += '<h2>' + this.journeyDetails['name'] + '</h2>';
-		
-		var journeyTime = new Date(this.journeyDetails['time'] * 1000);
-		content += '<h5>' + journeyTime.toDateString() + '</h5>';
-		
+		content += '<h5>' + this.getDate(this.journeyDetails['time']) + '</h5>';
 		content += '<p>' + this.journeyDetails['description'] + '</p>';
 		content += '<img src = "' + this.getImageSource(this.journeyDetails['image']) + '" />';
 		
-		for(i=0;i<this.journeyDetails['path'];i++){
-			var milestoneContent = "";
+		content += '<h3>' + 'Paths Followed' + '</h3>';
+		content += '<ul>';
+		for(i=0;i<this.journeyDetails['path'].length;i++){
 			
+			var milestone = this.journeyDetails['path'][i];
+			var milestoneContent = '';
+			milestoneContent += '<li>';
+			milestoneContent += '<h3>' + milestone['location'] + '</h3>';
+			milestoneContent += '<h5>' + this.getDate(milestone['time']) + '</h5>';
+			
+			for(j=0;j<milestone['attachments'].length;j++){
+				
+				var attachment = milestone['attachments'][i];
+				var attachmentContent = '';
+				attachmentContent += '<p>' + attachment['description'] + '</p>';
+				attachmentContent += '<img src = "' + this.getImageSource(attachment['image']) + '" />';
+				attachmentContent += '<h5>' + this.getDate(attachment['time']) + '</h5>';
+				
+				milestoneContent += attachmentContent;
+			}
+			
+			milestoneContent += '</li>';
 			content += milestoneContent;
 		}
+		content += '</ul>';
 		
 		blog['content'] = content;
 		return blog;
