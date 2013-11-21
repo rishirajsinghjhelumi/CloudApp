@@ -133,6 +133,10 @@ var newBlogDetails = function(journeyId){
 			},
 		}).done(function(data) {
 			obj = data;
+			console.log("yaha aaya");
+			console.log(obj);
+			console.log("yaha gaya");
+
 			for(var i=0;i<obj["items"].length;++i){
 				temp = {};
 				temp["name"] = obj["items"][i].name;
