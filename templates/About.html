@@ -18,8 +18,33 @@
 
 html,body {
 	height: 100%;
+	background: url('/img/boathouse.jpg') no-repeat center center fixed;
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
 }
 
+@font-face {
+	font-family: gabrielle;
+	src: url('/css/Gabrielle.ttf');
+}
+
+.fontface1 {
+	font-family: gabrielle;
+	font-size: 25px;
+}
+
+@font-face {
+	font-family: quigley;
+	src: url('/css/quigley.ttf');
+}
+
+.fontface2 {
+	font-family: quigley;
+	font-size: 32px;
+	padding-top: 10%;
+}
 </style>
 
 <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
@@ -30,28 +55,26 @@ html,body {
 </head>
 
 <body>
-{% include "apps.html" %}
+	{% include "apps.html" %}
 	<div id="wrap">
-		<div class="container">
-			<h3>About Us</h3>
-			<div
-				style="background: url(/img/scene1.jpg) #000 top center no-repeat; background-size: cover; height: 300px;"
-				class="page-header"></div>
-			<p class="lead">The Traveler Book's Mission is to enable people
-				to completely relive a journey and flaunt it the way they want to.</p>
+		<div class="container" style="padding-top: 15px;">
+			<p class="lead fontface2">The Traveler Book's Mission is to
+				enable people to completely relive a journey and flaunt it the way
+				they want to</p>
 			<hr />
 
-			<p>We believe it is the experience and not just the pictures that
-				define an adventure. Click and upload your photos on the go, when
-				you're in the moment, willing to capture the perfect shot and
-				excited to write about it.</p>
+			<p class="fontface1" >We believe it is the experience and not just
+				the pictures that define an adventure. Click and upload your photos
+				on the go, when you're in the moment, willing to capture the perfect
+				shot and excited to write about it.</p>
 
-			<p>The Traveler Book allows you not only to map your entire
-				journey but also post a beautiful blog when the trip ends and share
-				it on Social Media. Never forget the story behind that shot or sigh
-				when you forget the location of that mind-blowing view on the
-				highway. We want you to relive all those awesome moments that were
-				tucked away in some corner by organizing them incrementally.</p>
+			<p class="fontface1">The Traveler Book allows you not only to map
+				your entire journey but also post a beautiful blog when the trip
+				ends and share it on Social Media. Never forget the story behind
+				that shot or sigh when you forget the location of that mind-blowing
+				view on the highway. We want you to relive all those awesome moments
+				that were tucked away in some corner by organizing them
+				incrementally.</p>
 
 			<div id="push"></div>
 		</div>
@@ -63,8 +86,7 @@ html,body {
 			<p class="muted credit"></p>
 			<span style="float: right;"> <a href="/">TravelerBook</a>&nbsp;&nbsp;
 				<a href="/about">About Us</a>&nbsp;&nbsp; <a href="/team">Team</a>&nbsp;&nbsp;
-				<a href="/technology">Technology</a>&nbsp;&nbsp;
-				<a href="/help">Help</a>&nbsp;&nbsp;
+				<a href="/technology">Technology</a>&nbsp;&nbsp; <a href="/help">Help</a>&nbsp;&nbsp;
 			</span> &copy; The Traveler Book 2013
 		</div>
 	</div>

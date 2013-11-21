@@ -291,9 +291,28 @@ var journeyListElement = function(journey){
 	$('#' + linkId ).click(function() {
 		var id = $(this).attr('id');
 		id = id.split("__remove")[0];
-		$('#' + id).remove();
-		id = id.split("list__")[1];
-		deleteJourney(id);
+		var journeyId = id.split("list__")[1];
+		
+		$('<div></div>').appendTo('body')
+		.html('<div><h6>Delete This Journey??</h6></div>')
+		.dialog({
+			modal: true, title: 'Delete message', zIndex: 10000, autoOpen: true,
+			width: 'auto', resizable: false,
+			buttons: {
+				Yes: function () {
+					$(this).dialog("close");
+					$('#' + id).remove();
+					deleteJourney(journeyId);
+				},
+				No: function () {
+					$(this).dialog("close");
+				}
+			},
+			close: function (event, ui) {
+				$(this).remove();
+			}
+		});
+		
 	});
 
 	$('#' + id ).click(function() {
@@ -301,6 +320,7 @@ var journeyListElement = function(journey){
 		var journeyId = id.split("list__")[1];
 		loadJourney(journeyId);
 	});
+	
 }
 
 var getAllJourneys = function(){
