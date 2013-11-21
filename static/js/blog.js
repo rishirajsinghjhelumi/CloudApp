@@ -50,7 +50,7 @@ var newBlogDetails = function(journeyId){
 	
 	this.getImageSource = function(imageId){
 		
-		var baseUrl = "http://thetravelerbook.appspot.com";
+		var baseUrl = 'http://' + location.host;
 		var imgSource = baseUrl + "/image/" + imageId;
 		return imgSource;
 		
@@ -167,6 +167,18 @@ var newBlogDetails = function(journeyId){
 				self.blogDetails.push(data["items"][i]);
 			}
 		},"json");
+	}
+	
+	this.refreshUser = function(){
+		
+		$.ajax({
+			url: '/auth/google',
+			type: 'POST',
+			async:false,
+		}).done(function(data) {
+			console.log(data);
+		},"json");
+		
 	}
 	
 	this.init = function(){

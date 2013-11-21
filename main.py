@@ -47,7 +47,9 @@ paths = [
             Route('/attachment/delete/<attachment_id>', handler='milestone.handlers.MilestoneAttachmentDelete', name='deleteAttachment'),
             Route('/attachment/get/<attachment_id>', handler='milestone.handlers.MilestoneAttachmentGet', name='getAttachment'),
             
-            Route('/blog/profile',handler = 'handlers.BlogPage'),
+            Route('/blog/new',handler = 'blog.handlers.BlogNew'),
+            Route('/blog/get/journey/<journey_id>',handler = 'blog.handlers.BlogGetAll'),
+            Route('/blog/get/<blog_id>',handler = 'blog.handlers.BlogGet'),
             
         ]
 

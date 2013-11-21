@@ -21,3 +21,8 @@ indexes:
   properties:
   - name: milestone_id
   - name: time
+  
+- kind: Blog
+  properties:
+  - name: journey_id
+  - name: time
