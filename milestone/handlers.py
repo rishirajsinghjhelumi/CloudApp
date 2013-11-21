@@ -8,23 +8,6 @@ from milestone.model import Milestone,MilestoneAttachment
 
 import json
 
-class Try(BaseRequestHandler):
-    
-    def get(self):
-        
-        self.response.out.write('<html><body>')
-        self.response.out.write("""
-              <form action="/milestone/new" enctype="multipart/form-data" method="post">
-                <div><input type="text" name="latitude" rows="3" cols="60"/></div>
-                <div><input type="text" name="longitude" rows="3" cols="60"/></div>
-                <div><input type="text" name="location" rows="3" cols="60"/></div>
-                <div><input type="text" name="journey_id" rows="3" cols="60"/></div>
-                <div><input type="submit" value="Create New"></div>
-              </form>
-              <hr>
-            </body>
-          </html>""" )
-        
 class MilestoneNew(BaseRequestHandler):
     
     def post(self):

@@ -1,5 +1,3 @@
-import webapp2
-
 from google.appengine.ext import db
 
 from util import getTimeEpoch
@@ -11,24 +9,6 @@ from milestone.model import Milestone,MilestoneAttachment
 from milestone.handlers import deleteMilestone
 
 import json
-
-class Try(webapp2.RequestHandler):
-    
-    def get(self):
-        
-        self.response.out.write('<html><body>')
-        self.response.out.write("""
-              <form action="/journey/new" enctype="multipart/form-data" method="post">
-                <div><textarea name="name" rows="3" cols="60"></textarea></div>
-                <div><textarea name="description" rows="3" cols="60"></textarea></div>
-                <div><label>Avatar:</label></div>
-                <div><input type="file" name="image"/></div>
-                <div><input type="submit" value="Create New"></div>
-              </form>
-              <hr>
-            </body>
-          </html>""" )
-        
 
 class JourneyNew(BaseRequestHandler):
     
