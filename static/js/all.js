@@ -309,6 +309,12 @@ var journeyListElement = function(journey){
 					$(this).dialog("close");
 					$('#' + id).remove();
 					deleteJourney(journeyId);
+					if(TTB.Map != null){
+						if (TTB.Map.journeyId == journeyId){
+							TTB.Map = null;
+							$('#map-canvas').empty();
+						}
+					}
 				},
 				No: function () {
 					$(this).dialog("close");
