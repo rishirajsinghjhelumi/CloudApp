@@ -299,31 +299,19 @@ var journeyListElement = function(journey){
 		id = id.split("__remove")[0];
 		var journeyId = id.split("list__")[1];
 		
-		$('<div></div>').appendTo('body')
-		.html('<div><h6>Delete This Journey??</h6></div>')
-		.dialog({
-			modal: true, title: 'Delete Journey', zIndex: 10000, autoOpen: true,
-			width: 'auto', resizable: false,
-			buttons: {
-				Yes: function () {
-					$(this).dialog("close");
-					$('#' + id).remove();
-					deleteJourney(journeyId);
-					if(TTB.Map != null){
-						if (TTB.Map.journeyId == journeyId){
-							TTB.Map = null;
-							$('#map-canvas').empty();
-						}
+		BootstrapDialog.confirm('Are you sure?', function(result){
+            if(result) {
+            	$('#' + id).remove();
+				deleteJourney(journeyId);
+				if(TTB.Map != null){
+					if (TTB.Map.journeyId == journeyId){
+						TTB.Map = null;
+						$('#map-canvas').empty();
 					}
-				},
-				No: function () {
-					$(this).dialog("close");
 				}
-			},
-			close: function (event, ui) {
-				$(this).remove();
-			}
-		});
+            }else {
+            }
+        });
 		
 	});
 

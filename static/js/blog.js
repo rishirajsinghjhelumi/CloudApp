@@ -5,6 +5,7 @@ var newBlogDetails = function(journeyId){
 	this.journeyMilestones = null;
 	this.error = null;
 	this.blogDetails = [];
+	this.postedBlog = null;
 
 	this.verifyAccessToken = function(){
 		self = this;
@@ -116,7 +117,6 @@ var newBlogDetails = function(journeyId){
 		var url = "https://www.googleapis.com/blogger/v3/blogs/" + currBlog["id"] + "/posts/";
 
 		var blogToPost = JSON.stringify(this.getGeneratedBlog(currBlog['id']));
-		console.log(blogToPost);
 
 		$.ajax({
 			url: url,
@@ -129,7 +129,7 @@ var newBlogDetails = function(journeyId){
 				request.setRequestHeader("Content-Type","application/json");
 			},
 		}).done(function(data) {
-			console.log(data);
+			self.postedBlog = data;
 			self.sendBlogToServer(data);
 		});
 
@@ -138,7 +138,7 @@ var newBlogDetails = function(journeyId){
 	this.sendBlogToServer = function(blogData){
 		
 		var url = "/blog/new";
-
+		var self = this;
 		$.ajax({
 			url: url,
 			type: 'POST',
@@ -149,7 +149,6 @@ var newBlogDetails = function(journeyId){
 					blog_url : blogData['url'],
 					blog_content : blogData['content']}
 		}).done(function(data) {
-			console.log(data);
 		},"json");
 		
 	}
@@ -204,12 +203,43 @@ var newBlogDetails = function(journeyId){
 	this.init = function(){
 		this.getAccessToken();
 		this.verifyAccessToken();
-
+		
+		var self = this;
 		if(this.error == null){
-			this.getUserDetail();
-			this.getUserBlogDetails();
-			this.loadJourney();
-			this.postJourney();
+			
+			var dialog = new BootstrapDialog({
+	            message: 'Posting Your Blog',
+	            buttons: [{
+	            	id: 'post-button',
+	                icon: 'glyphicon glyphicon-send',
+	                label: 'Posting...',
+	                cssClass: 'btn-primary',
+	                autospin: true,
+	                action: function(dialogRef){
+	                    dialogRef.enableButtons(false);
+	                    dialogRef.setClosable(false);
+	                    self.getUserDetail();
+	        			self.getUserBlogDetails();
+	        			self.loadJourney();
+	        			self.postJourney();
+	        			dialogRef.getModalBody().html('Visit your Blog <br/>' +
+	        				'<a href="' + self.postedBlog['url'] + '">' + self.postedBlog['title'] + '</a>');
+	        			dialogRef.enableButtons(true);
+	                    dialogRef.setClosable(true);
+	                }
+	            }, {
+	                label: 'Close',
+	                action: function(dialogRef){
+	                    dialogRef.close();
+	                }
+	            }]
+	        });
+			
+			dialog.realize();
+			dialog.open();
+			var btn1 = dialog.getButton('post-button');
+			btn1.click();
+			
 		}else{
 			console.log(this.error);
 		}
