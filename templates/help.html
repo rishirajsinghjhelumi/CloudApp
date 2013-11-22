@@ -29,7 +29,7 @@ html,body {
 </head>
 
 <body>
-{% include "apps.html" %}
+	{% include "apps.html" %}
 	<div id="wrap">
 		<div class="container">
 			<h3>Help Page</h3>
@@ -44,35 +44,33 @@ html,body {
 
 			<p class="lead"></p>
 			<ul style="list-style-type: none;">
-				<br />
-				<li>Sign in by clicking on <img
-					src="/img/btn_google.png">
+				<li><strong style="font-size:20px;">If you are Unable to Login using Google.It is because of
+					issue with google's oauth2 which gives deadline exceeded. Meanwhile
+					you can create journeys via logging using <a href="/auth/facebook">Facebook</a>.
+				<hr style="border-top: dotted 1px;" /></strong></li>
+				<li>Sign in by clicking on <img src="/img/btn_google.png">
 					button on the home page
 					<hr style="border-top: dotted 1px;" /></li>
-				<li>After signing in you'll be redirected to your Dash Board, where
-					you can add your journeys, view existing journeys and enable share
-					your Current Location(Give Permission to Browser for it)<br />
-				<br />
-				<img src="/img/help/1.png" width="500" height="500">
-				<hr style="border-top: dotted 1px;" />
+				<li>After signing in you'll be redirected to your Dash Board,
+					where you can add your journeys, view existing journeys and enable
+					share your Current Location(Give Permission to Browser for it)<br />
+					<br /> <img src="/img/help/1.png" width="500" height="500">
+					<hr style="border-top: dotted 1px;" />
 				</li>
 				<li>The form requires you to fill the journey name, the
-					description and upload a photograph<br />
-				<br />
-				<img src="/img/help/2.png" width="500" height="500" >
-				<hr style="border-top: dotted 1px;" />
+					description and upload a photograph<br /> <br /> <img
+					src="/img/help/2.png" width="500" height="500">
+					<hr style="border-top: dotted 1px;" />
 				</li>
 				<li>On submitting a journey it will appear on the list on the
-					left column<br />
-				<br />
-				<img src="/img/help/3.png" width="500" height="500" >
-				<hr style="border-top: dotted 1px;" />
+					left column<br /> <br /> <img src="/img/help/3.png" width="500"
+					height="500">
+					<hr style="border-top: dotted 1px;" />
 				</li>
 				<li>Click on a journey to add markers on the corresponding map
 					on the right. Clicking on a marker, a form to upload pictures pops
-					up. The image appears in the photobooth on the right<br />
-				<br />
-				<img src="/img/help/4.png" width="500" height="500" >
+					up. The image appears in the photobooth on the right<br /> <br />
+					<img src="/img/help/4.png" width="500" height="500">
 				</li>
 			</ul>
 
