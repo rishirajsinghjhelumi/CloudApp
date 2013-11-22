@@ -31,7 +31,7 @@ class BlogGetAll(BaseRequestHandler):
         
         query = db.Query(Blog)
         query.filter('journey_id = ',journey_id)
-        query.order('time')
+        query.order('post_time')
         
         blogs = []
         for blog in query.run():

@@ -25,4 +25,4 @@ indexes:
 - kind: Blog
   properties:
   - name: journey_id
-  - name: time
+  - name: post_time
