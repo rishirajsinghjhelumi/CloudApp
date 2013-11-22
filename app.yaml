@@ -1,4 +1,4 @@
-application: thetravelerbook
+application: gcdc2013-thetravelerbook
 version: 1
 runtime: python27
 api_version: 1
@@ -14,9 +14,9 @@ handlers:
   mime_type: text/javascript
   static_dir: static/js
   
-- url: /img/(.*\.(gif|png|jpg|jpeg))
+- url: /img/(.*\.(gif|png|jpg|jpeg|svg))
   static_files: static/img/\1
-  upload: static/img/(.*\.(gif|png|jpg|jpeg))
+  upload: static/img/(.*\.(gif|png|jpg|jpeg|svg))
   
 - url: /favicon\.ico
   mime_type: image/vnd.microsoft.icon

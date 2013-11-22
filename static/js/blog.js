@@ -224,7 +224,7 @@ var newBlogDetails = function(journeyId){
 						catch(err){
 							dialogRef.enableButtons(true);
 							dialogRef.getModalBody().html('Please Create A Blog To Post.<br/><a href="http://blogger.com">Google Blogger</a>');
-							$(this.remove());
+							$(this).remove();
 							return;
 						}
 						
@@ -235,10 +235,11 @@ var newBlogDetails = function(journeyId){
 							self.postJourney();
 							dialogRef.getModalBody().html('Visit your Blog <br/>' +
 									'<a href="' + self.postedBlog['url'] + '">' + self.postedBlog['title'] + '</a>');
-							$(this.remove());
+							$(this).remove();
 						}
 						catch(err){
 							dialogRef.getModalBody().html('Daily Post Quota Exceeded.Sorry!!!.<br/>We are Currently in development Phase.');
+							$(this).remove();
 						}
 						dialogRef.enableButtons(true);
 					}

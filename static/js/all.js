@@ -95,16 +95,20 @@ var JourneyMap = function(journeyId,markers){
 		$("#photobooth").css("overflow","scroll");
 
 		var div = document.createElement('div');
-		var content = '<ul class="thumbnails enlarge span4">';
+		div.id = "links";
+		var content = '<ul class="thumbnails span4">';
 		for(var i=0;i<milestone['attachments'].length;i++){
 			content += '<li>';
-			content += '<img alt="100%x180" height="100px" width="150px" ' + 'src = "/image/' + milestone['attachments'][i]['image'] + '"><span><img' + ' src = "/image/' + milestone['attachments'][i]['image'] + '"><br /></span>';
+			
+		    content += '<a href="/image/' + milestone['attachments'][i]['image'] + '" title="" data-gallery>' + 
+		    '<img src="/image/' + milestone['attachments'][i]['image'] + '" alt="" height="100px" width="150px"/></a>';
+			
 			content += '</li>';
 		}
 		content += '</ul>';
 		div.innerHTML = content;
 		photobooth.appendChild(div);
-
+		
 	}
 
 	this.addMarker = function(markerLocation,markerLatLngObj,currentPathLength,milestone){
@@ -162,7 +166,7 @@ var JourneyMap = function(journeyId,markers){
 					$('#' + formName)[0].reset();
 					self.displayImages(milestone);
 				});
-				
+
 				$("#" + formName + " #fileSelect").click(function(e){
 					e.preventDefault();
 					$("#" + formName + ' #fileElem').click();
@@ -247,9 +251,9 @@ var newJourney = function(){
 		$('body').append('<div id="photobooth"></div>');
 		TTB.Map = new JourneyMap(data['journey_id'],[]);
 		TTB.Map.init();
-		
+
 		var getUrl = "/journey/get/" + data['journey_id'];;
-		
+
 		$.ajax({
 			url: getUrl,
 			type: 'GET',
@@ -289,7 +293,7 @@ var journeyListElement = function(journey){
 	'<a href="#" class="righty" rel="popover" title="Share this Journey on..." id="' + 
 	popoverId + '">Publish</a>' + 
 	'</li>';
-	
+
 	//<img src="/img/publish.jpg" style="width:60px; height:40px;" />
 
 	$('#list').append(listElement);
@@ -298,10 +302,10 @@ var journeyListElement = function(journey){
 		var id = $(this).attr('id');
 		id = id.split("__remove")[0];
 		var journeyId = id.split("list__")[1];
-		
+
 		BootstrapDialog.confirm('Are you sure?', function(result){
-            if(result) {
-            	$('#' + id).remove();
+			if(result) {
+				$('#' + id).remove();
 				deleteJourney(journeyId);
 				if(TTB.Map != null){
 					if (TTB.Map.journeyId == journeyId){
@@ -309,10 +313,10 @@ var journeyListElement = function(journey){
 						$('#map-canvas').empty();
 					}
 				}
-            }else {
-            }
-        });
-		
+			}else {
+			}
+		});
+
 	});
 
 	$('#' + id ).click(function() {
@@ -320,34 +324,34 @@ var journeyListElement = function(journey){
 		var journeyId = id.split("list__")[1];
 		loadJourney(journeyId);
 	});
-	
-    $('#' + popoverId).popover({
-        html: true,
-        trigger: 'manual',
-        container: $(this).attr('id'),
-        placement: 'right',
-        content: function () {
-        	var journeyId = $(this).attr('id').split("pop__")[1];
-        	var publishId = 'publish__' + journeyId;
-        	var content = '<a href="#" id="' + publishId + '" onclick="postBlog(\'' + journeyId + '\')">Publish To Blogger</a>';
-        	return content;
-        }
-    }).on("mouseenter", function () {
-        var _this = this;
-        $(this).popover("show");
-        $(this).siblings(".popover").on("mouseleave", function () {
-            $(_this).popover('hide');
-        });
-    }).on("mouseleave", function () {
-        var _this = this;
-        setTimeout(function () {
-            if (!$(".popover:hover").length) {
-                $(_this).popover("hide")
-            }
-        }, 100);
-    });
-	
-    
+
+	$('#' + popoverId).popover({
+		html: true,
+		trigger: 'manual',
+		container: $(this).attr('id'),
+		placement: 'right',
+		content: function () {
+			var journeyId = $(this).attr('id').split("pop__")[1];
+			var publishId = 'publish__' + journeyId;
+			var content = '<a href="#" id="' + publishId + '" onclick="postBlog(\'' + journeyId + '\')">Publish To Blogger</a>';
+			return content;
+		}
+	}).on("mouseenter", function () {
+		var _this = this;
+		$(this).popover("show");
+		$(this).siblings(".popover").on("mouseleave", function () {
+			$(_this).popover('hide');
+		});
+	}).on("mouseleave", function () {
+		var _this = this;
+		setTimeout(function () {
+			if (!$(".popover:hover").length) {
+				$(_this).popover("hide")
+			}
+		}, 100);
+	});
+
+
 }
 
 var getAllJourneys = function(){
@@ -513,7 +517,7 @@ $(document).ready(function() {
 		newJourney();
 		$("#new_journey_form")[0].reset();
 	});
-	
+
 	getAllJourneys();
 
 });
