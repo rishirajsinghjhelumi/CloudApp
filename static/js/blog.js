@@ -183,6 +183,13 @@ var newBlogDetails = function(journeyId){
 				request.setRequestHeader("Authorization","Bearer " + self.accessToken);
 			},
 		}).done(function(data) {
+			//data = JSON.parse(data);
+			console.log(data);
+			console.log(typeof(data));
+			if(typeof(data)=="string"){
+				data = JSON.parse(data);
+			}
+			
 			for(var i=0;i<data["items"].length;++i){
 				self.blogDetails.push(data["items"][i]);
 			}
@@ -204,7 +211,6 @@ var newBlogDetails = function(journeyId){
 	this.init = function(){
 		this.getAccessToken();
 		this.verifyAccessToken();
-
 		if(this.error == null){
 			this.getUserDetail();
 			this.getUserBlogDetails();
