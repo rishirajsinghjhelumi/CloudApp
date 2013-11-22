@@ -28,6 +28,7 @@ import oauth2 as oauth1
 # users module is needed for OpenID authentication.
 from google.appengine.api import urlfetch, users
 from webapp2_extras import security
+urlfetch.set_default_fetch_deadline(60)
 
 __all__ = ['SimpleAuthHandler',
            'Error',
@@ -225,6 +226,7 @@ class SimpleAuthHandler(object):
       url=access_token_url, 
       payload=urlencode(payload),
       method=urlfetch.POST,
+      deadline=600,
       headers={'Content-Type': 'application/x-www-form-urlencoded'}
     )
 
@@ -494,7 +496,7 @@ class SimpleAuthHandler(object):
     URLfetch API.
     """
     target_url = url.format(urlencode({token_param:token}))
-    return urlfetch.fetch(target_url).content
+    return urlfetch.fetch(url = target_url,deadline=600).content
     
   def _query_string_parser(self, body):
     """Parses response body of an access token request query and returns

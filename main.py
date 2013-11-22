@@ -1,8 +1,11 @@
 import webapp2
 import sys
 from webapp2 import Route
+import json
 
 from secrets import SESSION_KEY
+from google.appengine.api import urlfetch
+urlfetch.set_default_fetch_deadline(600)
 
 if 'lib' not in sys.path:
     sys.path[0:0] = ['lib']

@@ -8,6 +8,9 @@ from jinja2.runtime import TemplateNotFound
 
 from simpleauth import SimpleAuthHandler
 
+from google.appengine.api import urlfetch
+urlfetch.set_default_fetch_deadline(60)
+
 
 class BaseRequestHandler(webapp2.RequestHandler):
   def dispatch(self):
