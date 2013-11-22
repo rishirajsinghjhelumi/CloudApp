@@ -113,7 +113,6 @@ var newBlogDetails = function(journeyId){
 
 		self = this;
 		var currBlog = this.blogDetails[0];
-		var journeyDate = new Date( this.journeyDetails['time'] * 1000);
 		var url = "https://www.googleapis.com/blogger/v3/blogs/" + currBlog["id"] + "/posts/";
 
 		var blogToPost = JSON.stringify(this.getGeneratedBlog(currBlog['id']));
@@ -215,16 +214,19 @@ var newBlogDetails = function(journeyId){
 	                cssClass: 'btn-primary',
 	                autospin: true,
 	                action: function(dialogRef){
-	                    dialogRef.enableButtons(false);
-	                    dialogRef.setClosable(false);
+	                	dialogRef.enableButtons(true);
+	                    dialogRef.setClosable(true);
 	                    self.getUserDetail();
 	        			self.getUserBlogDetails();
 	        			self.loadJourney();
-	        			self.postJourney();
-	        			dialogRef.getModalBody().html('Visit your Blog <br/>' +
-	        				'<a href="' + self.postedBlog['url'] + '">' + self.postedBlog['title'] + '</a>');
-	        			dialogRef.enableButtons(true);
-	                    dialogRef.setClosable(true);
+	        			try{
+	        				self.postJourney();
+	        				dialogRef.getModalBody().html('Visit your Blog <br/>' +
+	    	        				'<a href="' + self.postedBlog['url'] + '">' + self.postedBlog['title'] + '</a>');
+	        			}
+	        			catch(err){
+	        				dialogRef.getModalBody().html('Daily Post Quota Exceeded.Sorry!!!.<br/>We are Currently in development Phase.');
+	        			}
 	                }
 	            }, {
 	                label: 'Close',
