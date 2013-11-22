@@ -274,6 +274,7 @@ var deleteJourney = function(journeyId){
 var journeyListElement = function(journey){
 
 	var id = "list__" + journey['journey_id'];
+	var popoverId = "pop__" + journey['journey_id'];
 	var linkId = id + "__remove";
 	var listElement = '<li id="'+ id +
 	'"><img style="height:100px; width:100px;" src="/image/' + journey['image'] +'"> ' +
@@ -284,7 +285,12 @@ var journeyListElement = function(journey){
 	'<a href="#" class="remove" data-toggle="tooltip" id="' + linkId + '" ' +
 	'title="Delete this Journey" data-placement="bottom">&times;</a>' +
 	'</div></div>' + 
-	'<p>' + journey['description'] + '</p></li>';
+	'<p>' + journey['description'] + '</p>' +
+	'<a href="#" class="righty" rel="popover" title="Share this Journey on..." id="' + 
+	popoverId + '">Publish</a>' + 
+	'</li>';
+	
+	//<img src="/img/publish.jpg" style="width:60px; height:40px;" />
 
 	$('#list').append(listElement);
 
@@ -296,7 +302,7 @@ var journeyListElement = function(journey){
 		$('<div></div>').appendTo('body')
 		.html('<div><h6>Delete This Journey??</h6></div>')
 		.dialog({
-			modal: true, title: 'Delete message', zIndex: 10000, autoOpen: true,
+			modal: true, title: 'Delete Journey', zIndex: 10000, autoOpen: true,
 			width: 'auto', resizable: false,
 			buttons: {
 				Yes: function () {
@@ -321,6 +327,33 @@ var journeyListElement = function(journey){
 		loadJourney(journeyId);
 	});
 	
+    $('#' + popoverId).popover({
+        html: true,
+        trigger: 'manual',
+        container: $(this).attr('id'),
+        placement: 'right',
+        content: function () {
+        	var journeyId = $(this).attr('id').split("pop__")[1];
+        	var publishId = 'publish__' + journeyId;
+        	var content = '<a href="#" id="' + publishId + '" onclick="postBlog(\'' + journeyId + '\')">Publish To Blogger</a>';
+        	return content;
+        }
+    }).on("mouseenter", function () {
+        var _this = this;
+        $(this).popover("show");
+        $(this).siblings(".popover").on("mouseleave", function () {
+            $(_this).popover('hide');
+        });
+    }).on("mouseleave", function () {
+        var _this = this;
+        setTimeout(function () {
+            if (!$(".popover:hover").length) {
+                $(_this).popover("hide")
+            }
+        }, 100);
+    });
+	
+    
 }
 
 var getAllJourneys = function(){
@@ -486,7 +519,7 @@ $(document).ready(function() {
 		newJourney();
 		$("#new_journey_form")[0].reset();
 	});
-
+	
 	getAllJourneys();
 
 });

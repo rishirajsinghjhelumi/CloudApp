@@ -8,7 +8,8 @@
 <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=2">
 <link rel="stylesheet" href="/css/bootstrap.min.css" />
 <link href="/css/bootstrap-responsive.min.css" rel="stylesheet">
-<link rel="stylesheet" href="//code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
+<link rel="stylesheet"
+	href="//code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
 <link rel="stylesheet" href="/css/index.css" />
 
 <style>
@@ -155,7 +156,7 @@ li a {
 }
 
 li a:hover {
-	background-color: #FF704D;
+	
 }
 
 .lefty {
@@ -183,57 +184,77 @@ li a:hover {
 }
 </style>
 
-<script
-	src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBoJsQ8A7od6F-9dFROYGWZRwS8Hex0VmY&sensor=true"></script>
-<script src="/js/jquery-1.10.2.min.js"></script>
-<script src="/js/all.js"></script>
-<script src="/js/bootstrap.min.js"></script>
-<script src="//code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
-
 </head>
 <body>
-<div id="wrap">
-	<div class="container-fluid">
-		<div class="row-fluid">
-			<div class="span12" align="center">
-				<form name="new_journey_form" id="new_journey_form"
-					action="/journey/new" method="POST" enctype="multipart/form-data"
-					class="well form-inline">
-					<input type="text" class="input-large" name="name"
-						placeholder="What's your Adventure called ?" /> <input type="text"
-						class="input-large" name="description"
-						placeholder="Describe your Experience..." /> 
-						
-						<input type="file" name="image" id="fileElem" />
+	<div id="wrap">
+		<div class="container-fluid">
+			<div class="row-fluid">
+				<div class="span12" align="center">
+					<form name="new_journey_form" id="new_journey_form"
+						action="/journey/new" method="POST" enctype="multipart/form-data"
+						class="well form-inline">
+						<input type="text" class="input-large" name="name"
+							placeholder="What's your Adventure called ?" /> <input
+							type="text" class="input-large" name="description"
+							placeholder="Describe your Experience..." /> <input type="file"
+							name="image" id="fileElem" />
 						<button id="fileSelect" class="btn">Select Image</button>
 
-					<button type="submit" class="btn btn-primary">Add Journey</button>
-				</form>
-			</div>
-		</div>
-		<div class="row-fluid">
-			<div class="span3" style="overflow: auto; height: 500px;">
-				<div class="optdiv">
-					<ul id="list">
-					</ul>
+						<button type="submit" class="btn btn-primary">Add Journey</button>
+					</form>
 				</div>
 			</div>
-			<div class="span9">
-				<div id="map-canvas" style="height: 500px; width: auto;"></div>
-				<p id="error"></p>
+			<div class="row-fluid">
+				<div class="span3" style="overflow: auto; height: 500px;">
+					<div class="optdiv">
+						<ul id="list">
+						</ul>
+					</div>
+				</div>
+				<div class="span9">
+					<div id="map-canvas" style="height: 500px; width: auto;"></div>
+					<p id="error"></p>
+				</div>
 			</div>
-		</div>
-		<div id="push"></div>
+			<div id="push"></div>
 		</div>
 	</div>
-	
+
+
+	<div id="popover_content_wrapper" style="display: none; float: center;">
+		<div style="float: center;">
+			<div class="g-plusone" data-size="tall"
+				data-href="http://thetravelerbook.appspot.com/"
+				data-annotation="none" data-width="20"></div>
+			<script type="text/javascript">
+				(function() {
+					var po = document.createElement('script');
+					po.type = 'text/javascript';
+					po.async = true;
+					po.src = 'https://apis.google.com/js/platform.js';
+					var s = document.getElementsByTagName('script')[0];
+					s.parentNode.insertBefore(po, s);
+				})();
+			</script>
+			<a href="#"><img src="/img/blogger.jpg"></a>
+		</div>
+	</div>
+
 	{% include "footer.html" %}
 
 </body>
+<script
+	src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBoJsQ8A7od6F-9dFROYGWZRwS8Hex0VmY&sensor=true"></script>
+<script src="/js/jquery-1.10.2.min.js"></script>
+<script src="//code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+<script src="/js/blog.js"></script>
+<script src="/js/all.js"></script>
 <script>
-document.querySelector('#fileSelect').addEventListener('click', function(e) {
-  e.preventDefault();
-  document.querySelector('#fileElem').click();
-}, false);
+	document.querySelector('#fileSelect').addEventListener('click',
+			function(e) {
+				e.preventDefault();
+				document.querySelector('#fileElem').click();
+			}, false);
 </script>
 </html>
