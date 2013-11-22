@@ -203,7 +203,6 @@ var newBlogDetails = function(journeyId){
 	this.init = function(){
 		this.getAccessToken();
 		this.verifyAccessToken();
-		
 		var self = this;
 		if(this.error == null){
 			
