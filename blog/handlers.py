@@ -51,6 +51,6 @@ class BlogGet(BaseRequestHandler):
         blogInfo = dict(blog.__dict__['_entity'])
         blogInfo['id'] = str(blog.key())
         
-        self.response.write(json.dumps({'blog' : blog}))
+        self.response.write(json.dumps({'blog' : blogInfo}))
         
             
