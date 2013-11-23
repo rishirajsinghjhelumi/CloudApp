@@ -27,6 +27,7 @@ paths = [
             Route('/help', handler = 'handlers.HelpPage'),
             Route('/technology', handler = 'handlers.TechnologyPage'),
             Route('/comingsoon', handler = 'handlers.ComingSoonPage'),
+            Route('/privacypolicy', handler ='handlers.PrivacyPolicy'),
             
             Route('/user/getAccessToken',handler = 'handlers.GetAccessToken'),
             Route('/logout', handler='auth_handlers.AuthHandler:logout', name='logout'),

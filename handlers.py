@@ -13,6 +13,12 @@ class AboutPage(BaseRequestHandler):
     
     def get(self):
         self.render('About.html')
+        
+class PrivacyPolicy(BaseRequestHandler):        
+      def get(self):
+        self.render('privacypolicy.html')
+        
+
     
 class TeamPage(BaseRequestHandler):
     
