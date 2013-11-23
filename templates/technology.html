@@ -35,9 +35,27 @@ html,body {
 
 .fontface2 {
 	font-family: customLine;
-	font-size: 200px;
+	font-size: 60px;
+	padding-top:2%;
 	padding-bottom: 2%;
 }
+
+.font2 {
+	font-family: customLine;
+	font-size: 100px;
+	padding-bottom: 2%;
+	text-align: center; 
+	padding-top: 50px; 
+}
+
+.background_color{
+	background-color: #FBFBEF; 
+	background-size: cover;  
+	border-radius: 6px;
+	text-align:center;
+}
+
+
 </style>
 
 <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
@@ -50,16 +68,18 @@ html,body {
 <body>
 	{% include "apps.html" %}
 	<div id="wrap">
-		<div class="container fontface2">
-			<h3
-				style="text-align: justify; padding-top: 15px; padding-left: 15px; font-size: 80px !important">Technologies
-				And APIs</h3>
-			<div
-				style="background-color: #FBFBEF; background-size: cover; height: 65px; border-radius: 6px;"
-				class="page-header">
-				<p class="lead fontface3"
-					style="padding-top: 27px; padding-left: 15px; font-size: 80px">
-					Major Google and other Technologies used</p>
+		<div class="container">
+			<div class="row font2">
+			Technologies
+			</div>
+			<div class="row font2">
+				And APIs
+			
+			</div>
+			<div class="background_color page-header lead fontface2">
+				<p>
+					Major Google and</p> 
+					<p>other Technologies used</p>
 			</div>
 			<div class="row">
 				<div class="span4">
