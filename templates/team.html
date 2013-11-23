@@ -12,6 +12,9 @@
 <link href="/css/bootstrap-responsive.min.css" rel="stylesheet">
 <link href="/css/heroic-features.css" rel="stylesheet">
 <link rel="stylesheet" href="/css/index.css" />
+<link rel="stylesheet" href="/css/font-awesome.min.css">
+
+
 <style>
 .imageClip {
 	width: 300px;
@@ -42,12 +45,39 @@ html,body {
 	font-family: customLine;
 	src: url('/css/look-up.ttf');
 }
-
-.fontface2 {
-	font-family: customLine;
-	font-size: 100px;
-	padding-bottom: 2%;
+.row-fluid {
+	padding-top:30px;
+	padding-right: 0px;
+	padding-left: 0px;
 }
+
+
+.font2 {
+	font-family: customLine;
+	font-size:70px;
+	padding-top:2%;
+	padding-bottom: 0%;
+}
+
+.font1
+{
+	font-family: Walkway_SemiBold.ttf;
+	font-size: 20px;
+	text-align: justify;
+}
+
+.padding_ele_top{
+	margin-top:4%;	
+}
+.padding_ele_bottom{
+	margin-bottom:4%;	
+}
+
+.background_color{
+	background-color: #D3D3D3;
+}
+
+
 </style>
 
 </head>
@@ -56,22 +86,28 @@ html,body {
 	{% include "apps.html" %}
 	<div id="wrap">
 		<div class="container">
-
-			<div class="jumbotron hero-unit">
-				<p class="fontface2">Meet Our Team...</p>
-				<p class="fontface1">
+			<div class="row font2">
+			<div class="col-md-3 col-md-offset-3" align="center">
+				<p>Meet Our Team...</p>
+			</div>
+			</div>
+			<div class="row-fluid font1 padding_ele_bottom">
+			<div class="col-md-8 col-md-offset-2 background_color" align="">
+				<p>
 					We, a bunch of Computer Science Undergrads at
-					<font:bold 12px/30pxGeorgia, serif;>IIIT, Hyderabad</font>
+					IIIT, Hyderabad
 					believe its high time that the dread of sitting down, tweaking and
 					sorting media after a trip was made history. We love solving
 					real-life problems. The Traveler Book is just a manifestation of
 					one such solution.
 				</p>
 			</div>
+			</div>
+			
 
 			<hr>
 
-			<div class="row text-center">
+			<div class="row text-center padding_ele_top">
 
 				<div class="span4 hero-feature">
 					<div class="thumbnail">
