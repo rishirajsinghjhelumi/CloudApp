@@ -27,12 +27,17 @@ class GetImage(webapp2.RequestHandler):
 def PostImage(image):
     
     newImage = Image()
-    newImage.image = db.Blob(image.file.read())
-    newImage.name = image.filename
+    try:
+        newImage.image = db.Blob(image.file.read())
+        newImage.name = image.filename
     
-    newImage.put()
+        newImage.put()
+        return str(newImage.key())
     
-    return str(newImage.key())
+    except:
+        return str("None")
+    
+    
     
     
     
